@@ -1,9 +1,17 @@
+import React from "react";
+import Wrapper from "./components/Wrapper"
+import Card from "./components/Card"
+import NoHeadCard from "./components/NoHeadCard"
+import SearchForm from "./components/SearchForm"
 
 function App() {
   return (
-    <h1>
-      I'M A PROJECT 3!
-    </h1>
+    <Wrapper>
+      <SearchForm />
+      <Card heading="top walkthroughs">
+        <NoHeadCard />
+      </Card>
+    </Wrapper>
   );
 }
 
