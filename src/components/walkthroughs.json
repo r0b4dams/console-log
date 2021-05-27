@@ -1,0 +1,32 @@
+[
+    {
+        "id" : 1,
+        "title":"best walkthrough ever!",
+        "gameID":"24899",
+        "gameName":"Super Mario World",
+        "content":"collect the stars!",
+        "link":"",
+        "rating":"5.0",
+        "updated":"2021/5/26"
+    },
+    {
+        "id" : 2,
+        "title":"2nd best walkthrough ever!",
+        "gameID":"24899",
+        "gameName":"Super Mario World",
+        "content":"collect the stars!",
+        "link":"",
+        "rating":"4.9",
+        "updated":"2021/1/2"
+    },
+    {
+        "id" : 3,
+        "title":"3rd best walkthrough ever!",
+        "gameID":"24899",
+        "gameName":"Super Mario World",
+        "content":"collect the stars!",
+        "link":"",
+        "rating":"3.2",
+        "updated":"2020/10/21"
+    }
+]
