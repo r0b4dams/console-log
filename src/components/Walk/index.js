@@ -9,7 +9,7 @@ export default function Walk( {walkthrough} ) {
           </h2>
           <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
             <div>
-              <dt className="sr-only">Date</dt>
+              <dt className="sr-only">Game</dt>
               <dd>{walkthrough.gameName}</dd>
             </div>
             <div className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
