@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Home from "../_pages/Home";
+import Login from "../_pages/Login"
+import NavBar from "../NavBar"
+import OneWalkContainer from "../OneWalkContainer"
+import DashboardContainer from "../OneWalkContainer"
 import Footer from "../Footer"
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
@@ -9,6 +13,7 @@ import walkthroughs from "../walkthroughs.json"
 
 class HomeContainer extends Component {
   state = {
+    currentPage: "Home",
     games: [],
     gamesFilter: [],
     walkthroughs: [],
@@ -37,13 +42,31 @@ class HomeContainer extends Component {
     // console.log(this.state.next)
     return;
   }
+  
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
+  renderPage = () => {
+    if (this.state.currentPage === "Home") {
+      return <Home />;
+    } else if (this.state.currentPage === "Login") {
+      return <Login />;
+    } else if (this.state.currentPage === "Walkthrough") {
+      return <OneWalkContainer />;
+    } else if (this.state.currentPage === "Dashboard") {
+      return <DashboardContainer />;
+    } 
+  };
 
   render() {
     return (
       <div>
-        <Home />
-        {/* <Login /> */}
-
+        <NavBar 
+          currentPage={this.state.currentPage}
+          handlePageChange={this.handlePageChange}
+        />
+        {this.renderPage()}
         <div className="grid grid-flow-col">
           <div className="col">
             <GameGroup games={this.state.games}/>
