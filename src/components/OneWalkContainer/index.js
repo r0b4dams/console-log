@@ -17,7 +17,7 @@ class OneWalkContainer extends Component {
     return (
       <div>
         <NavBar />
-        <OneWalkPage />
+        {/* <OneWalkPage /> */}
 
         <OneWalk walkthrough={walkthroughs[0]} />
         <Footer />

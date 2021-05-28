@@ -1,14 +1,14 @@
 export default function OneWalk({ walkthrough }) {
     return (
         <div>
-            <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg" style={{
+            <article className="artOp bg-cover p-1 flex space-x-4 m-8 rounded-lg" style={{
                 backgroundImage: `url("https://media.rawg.io/media/games/3bb/3bb2c8d774c3a83eb2c17d0d3d51f020.jpg")`
             }}>
                 <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
                     <h2 className="text-2xl font-semibold text-black mb-0.5 text-left">
                         {walkthrough.title}
                     </h2>
-                    <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+                    <dl className="flex flex-wrap font-medium whitespace-pre">
                         <div className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
                             <dt className="text-amber-500">
                                 <span className="sr-only">Rating</span>
@@ -22,23 +22,23 @@ export default function OneWalk({ walkthrough }) {
                 </div>
             </article>
 
-            <div>
-                <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+            <div className="mt-4 mx-8">
+                <dl className="flex flex-wrap font-medium">
                     <dt className="sr-only">Game Title</dt>
-                    <dd className="text-xl">Game: {walkthrough.gameName}</dd>
+                    <dd className="text-xl underline">Game: {walkthrough.gameName}</dd>
                 </dl>
-                <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+                <dl className="flex flex-wrap font-medium">
                     <dd className="text-lg">{walkthrough.content}</dd>
                 </dl>
             </div>
 
-            <div className="relative">
-                <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+            <div className="relative mx-8 fixed">
+                <dl className="flex flex-wrap font-medium min-h-screen items-end">
                     <dt className="sr-only">Date</dt>
                     <dd className="text-md">Last Updated: {walkthrough.updated}</dd>
-                    <div className="absolute top-0 right-0">
+                    <div className="absolute bottom-0 right-0">
                         <dt className="sr-only">Link</dt>
-                        <dd className="text-md">{walkthrough.link}</dd>
+                        <dd className="text-md">Link: {walkthrough.link}</dd>
                     </div>
                 </dl>
             </div>
