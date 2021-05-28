@@ -4,12 +4,10 @@ import NavBar from "../NavBar"
 import Footer from "../Footer"
 import OneWalk from "../OneWalk"
 
-import games from "../games.json"
 import walkthroughs from "../walkthroughs.json"
 
 class OneWalkContainer extends Component {
   state = {
-    games,
     walkthroughs
   };
 

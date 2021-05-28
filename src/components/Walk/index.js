@@ -1,7 +1,7 @@
 export default function Walk( {walkthrough} ) {
     return (
       <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg" style={{ 
-        backgroundImage: `url("https://media.rawg.io/media/games/3bb/3bb2c8d774c3a83eb2c17d0d3d51f020.jpg")` 
+        backgroundImage: `url(${walkthrough.gameImgLink})` 
       }}>
         <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
           <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
