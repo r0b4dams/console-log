@@ -9,8 +9,8 @@ export default function NavBar(props) {
           </svg>
         </div>
         <div className="text-right"><SearchBar /></div>
-        <div className="p-2 text-right"><a href="/signup" onClick={() => props.handlePageChange("Login")}>SIGN UP</a>/<a href="/login" onClick={() => props.handlePageChange("Login")}>LOG IN</a></div>
-        <div className="p-2 text-right"><a href="/dashboard" onClick={() => props.handlePageChange("Dashboard")}>Dashboard</a>/<a href="/walkthrough" onClick={() => props.handlePageChange("Walkthrough")}>Walkthrough</a></div>
+        <div className="p-2 text-right"><button onClick={() => props.handlePageChange("SignUp")}>SIGN UP</button>/<button onClick={() => props.handlePageChange("Login")}>LOG IN</button></div>
+        <div className="p-2 text-right"><button onClick={() => props.handlePageChange("Dashboard")}>Dashboard</button>/<button onClick={() => props.handlePageChange("Walkthrough")}>Walkthrough</button></div>
       </div>
     )
 }

@@ -25,7 +25,7 @@ export default function WalkGroup() {
 
       <WalkList>
         {walkthroughState.map((walkthrough) => (
-          <Walk key={walkthrough.id} walkthrough={walkthrough} />
+          <Walk key={walkthrough._id} walkthrough={walkthrough} />
         ))}
       </WalkList>
     </div>
