@@ -1,6 +1,6 @@
 export default function Game({ game }) {
     return (
-      <article className="p-2 flex space-x-4 bg-gray-200 mx-8 rounded">
+      <article className="gameCard p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded hover:bg-gray-300 border-2">
         <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
         <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">
           <h2 className="text-lg font-semibold text-black mb-0.5 text-left">
