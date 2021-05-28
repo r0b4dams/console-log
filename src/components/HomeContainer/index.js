@@ -18,6 +18,7 @@ class HomeContainer extends Component {
     gamesFilter: [],
     walkthroughs: [],
     next: "",
+    prev: "",
     open: false
   };
 
@@ -31,15 +32,17 @@ class HomeContainer extends Component {
       this.setState({
         games: res.data.results,
         gamesFilter: res.data.results,
-        next: res.data.next
+        next: res.data.next,
+        prev: res.data.previous
       });
     })
     .catch((err) => console.log(err));
   }
 
   handleNextSubmit = (event) => {
+    event.preventDefault();
     this.reloadGames(this.state.next);
-    // console.log(this.state.next)
+    alert(this.state.next)
     return;
   }
   
