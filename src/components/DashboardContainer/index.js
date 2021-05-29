@@ -8,7 +8,7 @@ import WalkGroup from "../WalkGroup"
 import games from "../games.json"
 import walkthroughs from "../walkthroughs.json"
 
-class HomeContainer extends Component {
+class DashboardContainer extends Component {
   state = {
     games,
     walkthroughs
@@ -18,7 +18,7 @@ class HomeContainer extends Component {
     return (
       <div>
         <NavBar />
-        <Home />
+        {/* <Dashboard /> */}
 
         <div className="grid grid-flow-col">
           <div className="col">
@@ -34,4 +34,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default HomeContainer;
+export default DashboardContainer;
