@@ -1,6 +1,6 @@
 import SearchBar from "../SearchBar"
 
-export default function NavBar() {
+export default function NavBar(props) {
     return (
       <div className="py-1 pr-3 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
         <div className="text-Left">
@@ -9,7 +9,8 @@ export default function NavBar() {
           </svg>
         </div>
         <div className="text-right"><SearchBar /></div>
-        <div className="p-2 text-right"><a href="/login">SIGN UP</a>/LOG IN</div>
+        <div className="p-2 text-right"><button onClick={() => props.handlePageChange("SignUp")}>SIGN UP</button>/<button onClick={() => props.handlePageChange("Login")}>LOG IN</button></div>
+        <div className="p-2 text-right"><button onClick={() => props.handlePageChange("Dashboard")}>Dashboard</button>/<button onClick={() => props.handlePageChange("Walkthrough")}>Walkthrough</button></div>
       </div>
     )
 }
