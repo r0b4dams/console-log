@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import OneWalkPage from "../_pages/OneWalkPage";
-import NavBar from "../NavBar"
 import Footer from "../Footer"
 import OneWalk from "../OneWalk"
 
@@ -14,7 +13,6 @@ class OneWalkContainer extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         {/* <OneWalkPage /> */}
 
         <OneWalk walkthrough={walkthroughs[0]} />
