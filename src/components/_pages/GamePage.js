@@ -19,7 +19,7 @@ function GamePage({match}) {
   }, [])
 
   let thisWalk = walkthroughState.filter(function (e) {
-    return e.game_id == match.params.gameID;
+    return e.game_id === parseInt(match.params.gameID);
   })
 
   return (
@@ -58,7 +58,7 @@ function GamePage({match}) {
     <div>
       {game.website && 
         <div>
-          Official Website: <a href={game.website} target="_blank">{game.website}</a>
+          Official Website: <a href={game.website} target="_blank" rel="noreferrer">{game.website}</a>
         </div>
       }
     </div>
