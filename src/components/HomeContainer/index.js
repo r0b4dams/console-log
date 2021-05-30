@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Footer from "../Footer"
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
 import NextButton from "../NextButton"
@@ -48,10 +47,6 @@ class HomeContainer extends Component {
     return;
   }
   
-  handlePageChange = page => {
-    this.setState({ currentPage: page });
-  };
-
   render() {
     return (
       <div>
@@ -66,8 +61,6 @@ class HomeContainer extends Component {
             <WalkGroup walkthroughs={walkthroughs}/>
           </div>
         </div>
-        <p className="my-8"></p>
-        <Footer />
       </div>
     );
   }

@@ -14,7 +14,7 @@ export default function NavBar(props) {
           <img src="assets/images/Title.png" className="object-contain h-8" alt=""/>
         </Link>
       </div>
-      <div className="text-right"><SearchBar /></div>
+      <div className="text-right"><SearchBar handleFormSubmit={props.handleFormSubmit}/></div>
       <div className="p-2 text-right"><Link to="/Signup" className={location.pathname === "/Signup" ? "nav-link active" : "nav-link"}>SIGN UP</Link>/<Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>
       <div className="p-2 text-right"><Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>/<Link to="/Walkthrough" className={location.pathname === "/Walkthrough" ? "nav-link active" : "nav-link"}>Walkthrough</Link></div>
       <div className="p-2 text-right"></div>
