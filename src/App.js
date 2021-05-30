@@ -1,8 +1,12 @@
 import React, {useEffect,useState} from "react";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
 import API from "./components/utils/API";
-import HomeContainer from "./components/HomeContainer";
 import NavBar from "./components/NavBar"
+import HomePage from "./components/_pages/HomePage"
+import GamePage from "./components/_pages/GamePage"
+import Login from "./components/_pages/Login"
+import Dashboard from "./components/_pages/HomePage"  //will need to update once Dashboard is created
 
 function App() {
 
@@ -115,18 +119,19 @@ function App() {
     localStorage.removeItem("token")
   }
 
-  const onOpenModal = () => {
-    // this.setState({ open: true });
-  };
-
-  const onCloseModal = () => {
-    // this.setState({ open: false });
-  };
-
   return (
+    <Router>
     <div className="App">
-      <HomeContainer />
+      <NavBar />
+      <Switch>
+        <Route exact path="/Login" component={Login} />
+        <Route exact path="/GamePage/:gameID" component={GamePage} />
+        <Route exact path="/Dashboard" component={Dashboard} />
+        <Route exact path="/" component={HomePage} />
+      </Switch>
     </div>
+    </Router>
+  
   );
 }
 

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import Home from "../_pages/Home";
-import Login from "../_pages/Login"
-import NavBar from "../NavBar"
-import OneWalkContainer from "../OneWalkContainer"
-import DashboardContainer from "../OneWalkContainer"
 import Footer from "../Footer"
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
@@ -12,8 +7,10 @@ import NextButton from "../NextButton"
 import walkthroughs from "../walkthroughs.json"
 
 class HomeContainer extends Component {
+  _isMounted = false;
+
   state = {
-    currentPage: "Home",
+    currentPage: "HomePage",
     games: [],
     gamesFilter: [],
     walkthroughs: [],
@@ -23,7 +20,12 @@ class HomeContainer extends Component {
   };
 
   componentDidMount() {
-    this.reloadGames("https://api.rawg.io/api/games?key=2e1926e930f2426e857f633a7a3c2286");
+    this._isMounted = true;
+    this.reloadGames("");
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   reloadGames(query) {
@@ -50,26 +52,9 @@ class HomeContainer extends Component {
     this.setState({ currentPage: page });
   };
 
-  renderPage = () => {
-    if (this.state.currentPage === "Home") {
-      return <Home />;
-    } else if (this.state.currentPage === "Login") {
-      return <Login />;
-    } else if (this.state.currentPage === "Walkthrough") {
-      return <OneWalkContainer />;
-    } else if (this.state.currentPage === "Dashboard") {
-      return <DashboardContainer />;
-    } 
-  };
-
   render() {
     return (
       <div>
-        <NavBar 
-          currentPage={this.state.currentPage}
-          handlePageChange={this.handlePageChange}
-        />
-        {this.renderPage()}
         <div className="grid grid-flow-col">
           <div className="col">
             <GameGroup games={this.state.games}/>
