@@ -4,6 +4,7 @@ import API from "./components/utils/API";
 import HomeContainer from "./components/HomeContainer";
 import OneWalkContainer from "./components/OneWalkContainer";
 import DashboardContainer from "./components/DashboardContainer";
+import GameWalks from "./components/GameWalks";
 import NavBar from "./components/NavBar"
 
 function App() {
@@ -127,7 +128,7 @@ function App() {
 
   return (
     <div className="App">
-      <DashboardContainer />
+      <GameWalks />
     </div>
   );
 }
