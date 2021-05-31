@@ -1,5 +1,11 @@
+import { Link, useLocation } from "react-router-dom";
+
 export default function Game({ game }) {
-    return (
+  const location = useLocation();
+
+  return (
+      <>
+      <Link to={`/GamePage/${game.id}`} className={location.pathname === "/GamePage" ? "nav-link active" : "nav-link"}>
       <article className="gameCard p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded hover:bg-gray-300 border-2">
         <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
         <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">
@@ -30,5 +36,7 @@ export default function Game({ game }) {
           </dl>
         </div>
       </article>
+      </Link>
+      </>
     )
   }
