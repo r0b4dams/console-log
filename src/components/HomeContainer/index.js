@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useContext  } from "react";
 import API from "../utils/API";
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
 import NextButton from "../NextButton"
 import walkthroughs from "../walkthroughs.json"
+import { AppContext } from '../../App'
 
 class HomeContainer extends Component {
+
   _isMounted = false;
 
   state = {
@@ -15,20 +17,21 @@ class HomeContainer extends Component {
     walkthroughs: [],
     next: "",
     prev: "",
-    open: false
+    open: false,
+    search: this.props.search
   };
 
   componentDidMount() {
     this._isMounted = true;
-    this.reloadGames("");
+    this.reloadGames(global.searchable, global.filter);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
   }
 
-  reloadGames(query) {
-    API.search(query)
+  reloadGames(query, filter) {
+    API.search(query, filter)
     .then((res) => {
       this.setState({
         games: res.data.results,
@@ -53,9 +56,11 @@ class HomeContainer extends Component {
         <div className="grid grid-flow-col">
           <div className="col">
             <GameGroup games={this.state.games}/>
-            <NextButton 
+            {this.state.games && <NextButton 
                 handleNextSubmit={this.handleNextSubmit}
-            />
+                next={this.state.next}
+                prev={this.state.prev}
+            />}
           </div>
           <div className="col">
             <WalkGroup walkthroughs={walkthroughs}/>

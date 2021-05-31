@@ -1,9 +1,24 @@
+import React, { useContext } from 'react';
 import SearchBar from "../SearchBar"
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Redirect } from "react-router-dom";
+import { AppContext } from '../../App'
+import API from "../utils/API"
 
-export default function NavBar(props) {
+export default function NavBar() {
+  const {state, dispatch} = useContext(AppContext);
+  const changeInputValue = (newValue) => {
+    dispatch({ type: 'UPDATE_INPUT', data: newValue,});
+  };
   const location = useLocation();
-  
+
+  const handleFormSubmit = (event)=>{
+    event.preventDefault();
+    console.log(event.target.search.value)
+    // changeInputValue(event.target.search.value);
+    global.searchable="/"+event.target.search.value;
+    // API.search("/"+global.searchable)
+  }
+
   return (
     <div className="py-1 pr-3 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
       <div className="text-Left">
@@ -14,10 +29,9 @@ export default function NavBar(props) {
           <img src="assets/images/Title.png" className="object-contain h-8" alt=""/>
         </Link>
       </div>
-      <div className="text-right"><SearchBar handleFormSubmit={props.handleFormSubmit}/></div>
+      <div className="text-right"><SearchBar handleFormSubmit={handleFormSubmit}/></div>
       <div className="p-2 text-right"><Link to="/Signup" className={location.pathname === "/Signup" ? "nav-link active" : "nav-link"}>SIGN UP</Link>/<Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>
-      <div className="p-2 text-right"><Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>/<Link to="/Walkthrough" className={location.pathname === "/Walkthrough" ? "nav-link active" : "nav-link"}>Walkthrough</Link></div>
-      <div className="p-2 text-right"></div>
+      <div className="p-2 text-right"><Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link></div>
     </div>
   )
 }

@@ -5,11 +5,11 @@ import Walk from "../Walk"
 function GamePage({match}) {
   const [game,setGame] = useState([]);
   useEffect(() => {
-    API.search(`/${match.params.gameID}`)
+    API.search(`/${match.params.gameID}`, global.filter)
     .then(res=>{
       setGame(res.data);
     })     
-  }, [])
+  }, [match.params.gameID])
 
   const [walkthroughState,setWalkthroughState] = useState([]);
   useEffect(() => {
