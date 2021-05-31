@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import Home from "../_pages/Home";
+import Dashboard from "../_pages/Dashboard";
 import NavBar from "../NavBar"
 import Footer from "../Footer"
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
+import FavGroup from "../FavGroup"
+import Card from "../Card"
 
-import games from "../games.json"
+import games from "../old/games.json"
 import walkthroughs from "../walkthroughs.json"
 
 class DashboardContainer extends Component {
@@ -18,14 +20,17 @@ class DashboardContainer extends Component {
     return (
       <div>
         <NavBar />
-        {/* <Dashboard /> */}
+        <Dashboard />
 
         <div className="grid grid-flow-col">
           <div className="col">
-            <GameGroup games={games}/>
+            <Card heading="Favorites">
+              <FavGroup />
+            </Card>
           </div>
           <div className="col">
-            <WalkGroup walkthroughs={walkthroughs}/>
+            <GameGroup games={games} />
+            <WalkGroup walkthroughs={walkthroughs} />
           </div>
         </div>
         <Footer />

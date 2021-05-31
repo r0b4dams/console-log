@@ -127,7 +127,7 @@ function App() {
 
   return (
     <div className="App">
-      <HomeContainer />
+      <DashboardContainer />
     </div>
   );
 }
