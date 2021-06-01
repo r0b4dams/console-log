@@ -3,7 +3,7 @@ const KEY = "?key=2e1926e930f2426e857f633a7a3c2286"
 const axios = require("axios")
 const URL_PREFIX = "http://localhost:3001"
 //const URL_PREFIX = ""
-
+//https://rawg.io/api/games?search=${slugifiedTerm}&key=${process.env.APIKEY}
 const API = {
     search: function(CONFIG) {
       return axios.get(BASEURL + CONFIG + KEY);
