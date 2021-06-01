@@ -6,6 +6,7 @@ export default function SearchBar(props) {
         <input 
             className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 " 
             type="text" 
+            defaultValue={global.searchable}
             placeholder="Find a Game..." 
             name="search"/>
         <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">

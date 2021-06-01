@@ -1,2 +1,2 @@
-global.searchable = "";
-global.filter = "&ordering=-metacritic";
+global.searchable = localStorage.getItem('searchable');
+global.filter = "";
