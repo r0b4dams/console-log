@@ -37,22 +37,19 @@ export default function Login(props) {
       
       <form onSubmit = {props.handleSignupFormSubmit}> 
         <input 
-          name="email" 
+          name="name"
+          placeholder="Username" 
           className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-          value = {props.signupFormState.email} 
-          onChange={(e)=>props.setSignupFormState({...props.signupFormState,email:e.target.value})}/>
-        <input 
-          name="name" 
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-          value = {props.signupFormState.name} 
-          onChange={(e)=>props.setSignupFormState({...props.signupFormState,name:e.target.value})}/>
+          value = {props.signupFormState.username} 
+          onChange={(e)=>props.setSignupFormState({...props.signupFormState,username:e.target.value})}/>
         <input 
           name="password"  
-          type="password" 
+          type="password"
+          placeholder="Password"
           className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
           value = {props.signupFormState.password} 
           onChange={(e)=>props.setSignupFormState({...props.signupFormState,password:e.target.value})}/>
-        <input type="submit" value="signup"/>
+        <input className="bg-blue-500 rounded justify-center text-white" type="submit" value="signup"/>
       </form>
       </>):(
        <>
