@@ -8,6 +8,7 @@ import Footer from "./components/Footer"
 import HomePage from "./components/_pages/HomePage"
 import GamePage from "./components/_pages/GamePage"
 import Walkthrough from "./components/_pages/OneWalkPage"
+import AddWalkPage from "./components/_pages/AddWalkPage"
 import Login from "./components/_pages/Login"
 // import Dashboard from "./components/DashboardContainer"  //will need to update once Dashboard is created
 import SearchPage from "./components/_pages/SearchPage"
@@ -168,6 +169,7 @@ function App() {
         <Route exact path="/Walkthrough/:_id" component={Walkthrough} />
         <Route exact path="/Dashboard" component={Dashboard} />
         <Route exact path="/Search" component={SearchPage} />
+        <Route exact path="/AddWalkthrough/:gameID" component={AddWalkPage} />
         <Route path="/" component={HomePage} />
       </Switch>
       <Footer />
