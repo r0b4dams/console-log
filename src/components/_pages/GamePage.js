@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { Link, useLocation } from "react-router-dom";
 import API from "../utils/API";
 import Walk from "../Walk"
+import Nav from "../Nav"
 
 function GamePage({match}) {
   const location = useLocation();
@@ -97,7 +98,7 @@ function GamePage({match}) {
       ))}
     </div>
     <Link to={`/AddWalkthrough/${game.id}`} className={location.pathname === "/AddWalkthrough" ? "nav-link active" : "nav-link"}>
-      <button className="rounded-full py-1 px-6 bg-green-700 border-2 border-green-600 hover:bg-green-500">+ Add a Walkthrough</button>
+      <button className="rounded-full py-1 px-6 bg-red-700 border-2 border-red-600 hover:bg-red-500 text-white">+ Add a Walkthrough</button>
     </Link>
     </>
   );

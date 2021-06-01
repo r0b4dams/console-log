@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../utils/API";
 import Dashboard from "../_pages/Dashboard";
 import Footer from "../Footer"
 import GameGroup from "../GameGroup"
