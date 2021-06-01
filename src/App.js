@@ -12,6 +12,7 @@ import AddWalkPage from "./components/_pages/AddWalkPage"
 import Login from "./components/_pages/Login"
 // import Dashboard from "./components/DashboardContainer"  //will need to update once Dashboard is created
 import SearchPage from "./components/_pages/SearchPage"
+import {useHistory} from "react-router-dom";
 export const AppContext = React.createContext();
 
 const initialState = {
@@ -31,35 +32,41 @@ function reducer(state, action) {
 
 function App() {
 
-
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [formState,setFormState] = useState({
-    email:"",
+
+  const [loginFormState, setLoginFormState] = useState({
+    username:"",
     password:""
-  })
-  const [signupFormState,setSignupFormState] = useState({
-    email:"",
-    password:"",
-    name:""
-  })
+  });
 
-  const [userState,setUserState] = useState({
+  const [signupFormState, setSignupFormState] = useState({
+    username:"",
+    password:""
+  });
+
+  const [userState, setUserState] = useState({
     token:"",
-    user:{
-    }
-  })
+    user:{}
+  });
 
+  const history = useHistory();
+
+
+  // complete
   useEffect(()=>{
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+    // console.log(token);
+    
     if(token){
       API.getProfile(token).then(res=>{
-        console.log(res.data);
+
+        // console.log(res.data);
+
         setUserState({
           token:token,
           user:{
-            email:res.data.email,
-            id:res.data.id,
-            name:res.data.name
+            id:res.data._id,
+            name:res.data.username
           }
         })
       }).catch(err=>{
@@ -75,20 +82,34 @@ function App() {
     
   },[])
 
-  const handleFormSubmit = e =>{
+  // complete
+  const handleLoginFormSubmit = (e) =>{
+
+    // prevent page refresh
     e.preventDefault();
-    API.login(formState).then(res=>{
+
+    // send post request to /auth/login
+    API.login(loginFormState).then(res=>{
+
       console.log(res.data);
-      localStorage.setItem("token",res.data.token)
+      localStorage.setItem("token", res.data.token);
+
+      // set user state to match what was returned by token
       setUserState({
         ...userState,
-        token:res.data.token,
+        token: res.data.token,
         user:{
-          email:res.data.user.email,
-          name:res.data.user.name,
-          id:res.data.user.id
+          name:res.data.user.username,
+          id:res.data.user._id
         }
-      })
+      });
+
+      // reset login form state
+      setLoginFormState({
+        username:"",
+        password:""
+      });
+
     }).catch(err=>{
       console.log("error occured")
       console.log(err);
@@ -98,26 +119,32 @@ function App() {
         user:{}
       })
     })
-    setFormState({
-      email:"",
-      password:""
-    })
   }
 
+
   const handleSignupFormSubmit = e=>{
+
     e.preventDefault();
-    console.log(signupFormState);
+    // console.log(signupFormState);
+
     API.signup(signupFormState).then(res=>{
-      localStorage.setItem("token",res.data.token)
+
+      localStorage.setItem("token", res.data.token)
+
+      console.log(res.data); 
+      
       setUserState({
         ...userState,
-        token:res.data.token,
+        token: res.data.token,
         user:{
-          email:res.data.user.email,
-          name:res.data.user.name,
-          id:res.data.user.id
+          name:res.data.user.username,
+          id:res.data.user._id
         }
-      })
+      });
+      // if (!res.err) {
+      //   history.push("/Dashboard");
+      // }
+
     }).catch(err=>{
       console.log("error occured")
       console.log(err);
@@ -128,8 +155,7 @@ function App() {
       })
     })
     setSignupFormState({
-      name:"",
-      email:"",
+      username:"",
       password:""
     })
   }
@@ -155,14 +181,17 @@ function App() {
       <Switch>
         <Route exact path="/Login" render={() => (
           <Login 
+
             user={userState.user} 
-            formState={formState} 
-            setFormState={setFormState} 
-            signupFormState={signupFormState} 
+
+            loginFormState={loginFormState} 
+            setLoginFormState={setLoginFormState} 
+            signupFormState={signupFormState}
             setSignupFormState={setSignupFormState}
             handleSignupFormSubmit={handleSignupFormSubmit}
             handleLogout={handleLogout}
-            handleFormSubmit={handleFormSubmit} 
+            handleLoginFormSubmit={handleLoginFormSubmit}
+
           />
         )} />
         <Route exact path="/GamePage/:gameID" component={GamePage} />

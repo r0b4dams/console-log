@@ -7,49 +7,49 @@ export default function Login(props) {
       <div className="fixed inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
       <div className="inline-block align-bottom bg-gray-300 bg-opacity-75 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full">
-      <div className="bg-blue-500 flex items-center justify-center text-white">Authentication</div>
+      <div className="bg-blue-500 flex items-center justify-center text-white">Login</div>
       {!props.user.name ? (<>
-        <form onSubmit = {props.handleFormSubmit}> 
-        <input 
-          name="email" 
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-          placeholder="Username" 
-          value = {props.formState.email} 
-          onChange={(e)=>props.setFormState({...props.formState,email:e.target.value})}/>
-        <input 
-          name="password"  
-          type="password" 
-          autoComplete="current-password" 
-          required 
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-          placeholder="Password"
-          value = {props.formState.password} 
-          onChange={(e)=>props.setFormState({...props.formState,password:e.target.value})}/>
-        <input 
-          className="bg-blue-500 rounded justify-center text-white"
-          type="submit" 
-          value="login"/>
-      </form>
+        <form onSubmit = {props.handleLoginFormSubmit}> 
+          <input 
+            name="username" 
+            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+            placeholder="Username" 
+            value = {props.loginFormState.username} 
+            onChange={(e)=>props.setLoginFormState({...props.loginFormState, username:e.target.value})}
+          />
+          <input 
+            name="password"  
+            type="password" 
+            autoComplete="current-password" 
+            required 
+            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+            placeholder="Password"
+            value = {props.loginFormState.password}
+            onChange={(e)=>props.setLoginFormState({...props.loginFormState,password:e.target.value})}
+          />
+          <input 
+            className="bg-blue-500 rounded justify-center text-white"
+            type="submit" 
+            value="login"
+          />
+        </form>
       <div className="bg-blue-300 flex items-center justify-center text-white">Signup</div>
       
       <form onSubmit = {props.handleSignupFormSubmit}> 
         <input 
-          name="email" 
+          name="name"
+          placeholder="Username" 
           className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-          value = {props.signupFormState.email} 
-          onChange={(e)=>props.setSignupFormState({...props.signupFormState,email:e.target.value})}/>
-        <input 
-          name="name" 
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-          value = {props.signupFormState.name} 
-          onChange={(e)=>props.setSignupFormState({...props.signupFormState,name:e.target.value})}/>
+          value = {props.signupFormState.username} 
+          onChange={(e)=>props.setSignupFormState({...props.signupFormState,username:e.target.value})}/>
         <input 
           name="password"  
-          type="password" 
+          type="password"
+          placeholder="Password"
           className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
           value = {props.signupFormState.password} 
           onChange={(e)=>props.setSignupFormState({...props.signupFormState,password:e.target.value})}/>
-        <input type="submit" value="signup"/>
+        <input className="bg-blue-500 rounded justify-center text-white" type="submit" value="signup"/>
       </form>
       </>):(
        <>
