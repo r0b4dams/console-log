@@ -1,11 +1,9 @@
+import userEvent from '@testing-library/user-event';
 import React,{useEffect,useState} from 'react'
-import { Link, useLocation } from "react-router-dom";
-import API from "../utils/API";
-import Walk from "../Walk"
 
-function GamePage({match}) {
-  const location = useLocation();
-  
+import API from "../utils/API";
+
+function AddWalkPage({match}) {
   const [plats,setPlats] = useState([]);
   const [game,setGame] = useState([]);
   const platforms=[];
@@ -81,26 +79,35 @@ function GamePage({match}) {
 
     </div>
     <div>
-      {game.website && 
-        <div>
-          Official Website: <a href={game.website} target="_blank" rel="noreferrer">{game.website}</a>
-        </div>
-      }
+      <h1>
+          Walkthrough by [user.name]
+      </h1>
     </div>
     <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})`}}>
-      <div className="min-w-0 bg-gray-200 bg-opacity-80 rounded px-1" dangerouslySetInnerHTML={{__html: game.description}}></div>
+      <form>
+        <input 
+          name="Title" 
+          className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          // value = "walkthrough.name"
+          placeholder="Walkthrough Title"
+        />
+        <textarea
+          name="Content"
+          type="textbox"
+          className="resize appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Walkthrough Content"
+          >
+        </textarea>
+        <input 
+          name="Link" 
+          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          // value = "walkthrough.name"
+          placeholder="Link"
+        />
+      </form>
     </div>
-    Walkthroughs:
-    <div className="w-1/2 content-center m-8">
-      {thisWalk.map((walkthrough) => (
-          <Walk key={walkthrough._id} walkthrough={walkthrough} />
-      ))}
-    </div>
-    <Link to={`/AddWalkthrough/${game.id}`} className={location.pathname === "/AddWalkthrough" ? "nav-link active" : "nav-link"}>
-      <button className="rounded-full py-1 px-6 bg-green-700 border-2 border-green-600 hover:bg-green-500">+ Add a Walkthrough</button>
-    </Link>
     </>
   );
 }
 
-export default GamePage;
+export default AddWalkPage;
