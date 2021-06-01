@@ -30,11 +30,8 @@ class HomeContainer extends Component {
   }
 
   reloadGames(query, filter) {
-    console.log("here is the query"+query)
-    console.log("Global: "+global.searchable)
     API.search(query, filter)
     .then((res) => {
-      console.log(res.data.results)
       if(res.data.results.length) { 
         this.setState({
           games: res.data.results,
@@ -50,14 +47,25 @@ class HomeContainer extends Component {
         });   
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      global.searchable="";
+      localStorage.setItem('searchable', "");
+      console.log(err, "not found, defaulting")
+      this.reloadGames(global.searchable, global.filter)
+
+    });
+  }
+
+  handlePrevSubmit = (event) => {
+    global.searchable=this.state.prev;
+    localStorage.setItem('searchable', this.state.prev);
+    this.reloadGames(global.searchable, global.filter)
   }
 
   handleNextSubmit = (event) => {
-    event.preventDefault();
-    this.reloadGames(this.state.next);
-    alert(this.state.next)
-    return;
+    global.searchable=this.state.next;
+    localStorage.setItem('searchable', this.state.next);
+    this.reloadGames(global.searchable, global.filter)
   }
   
   render() {
@@ -69,6 +77,7 @@ class HomeContainer extends Component {
             <GameGroup games={this.state.games}/>
             {this.state.games && <NextButton 
                 handleNextSubmit={this.handleNextSubmit}
+                handlePrevSubmit={this.handlePrevSubmit}
                 next={this.state.next}
                 prev={this.state.prev}
             />}

@@ -13,7 +13,6 @@ export default function NavBar() {
 
   const handleFormSubmit = (event)=>{
     event.preventDefault();
-
     // changeInputValue(event.target.search.value);
     global.searchable=event.target.search.value;
     localStorage.setItem('searchable', event.target.search.value);

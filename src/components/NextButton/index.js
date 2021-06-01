@@ -1,9 +1,9 @@
 export default function NextButton( props ) {
-  // console.log("next: "+next)
   return (
       <>
       <form>
-        <button type="submit" className="" onClick={() => props.handleNextSubmit("Previous")}>Previous</button> <button type="submit" className="" onClick={() => props.handleNextSubmit("Next")}>Next</button>
+        {props.prev && <span><button type="submit" className="" onClick={() => props.handlePrevSubmit()}>« Previous</button> | </span>}
+        {props.next && <button type="submit" className="" onClick={() => props.handleNextSubmit()}>Next »</button>}
       </form>
       </>
     )
