@@ -11,19 +11,23 @@ const API = {
     search: function(CONFIG, SUFFIX) {
       if (!isNaN(CONFIG) && CONFIG) {
         //search by game ID
-        console.log("NUMBER: "+CONFIG)
+        // console.log("NUMBER: "+CONFIG)
         CONFIG=`/${CONFIG}?`;
         return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
       } else if (!CONFIG) {
         //blank
-        console.log("BLANK")
+        // console.log("BLANK")
         return axios.get(BASEURL + "?" + KEY + SUFFIX);
+      } else if (CONFIG.includes("http")) {
+        //searching NEXT & PREV
+        console.log("Searching: "+CONFIG)
+        return axios.get(CONFIG);
       } else {
         //For searchables
-        //https://rawg.io/api/games?search=${slugifiedTerm}&key=
+        //api/games?search=${slugifiedTerm}&key=
         CONFIG.toLowerCase().replace(/\s+/g, '-');
         CONFIG = `?search=${CONFIG}&`;
-        console.log("New CONFIG:"+CONFIG)
+        // console.log("New CONFIG:"+CONFIG)
         return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
       } 
     },

@@ -4,6 +4,7 @@ export default function Game({ game }) {
   const location = useLocation();
   const platforms = [];
 
+  if (game.platforms) {
   game.platforms.map(platform => (
     platforms.push(platform.platform.name)
   ))
@@ -58,5 +59,11 @@ export default function Game({ game }) {
       </article>
       </Link>
       </>
-    )
+    )} else {
+      return (
+        <div className="p-2 flex space-x-4 bg-red-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
+          No Results found!
+        </div>
+      )
+    }
   }
