@@ -51,8 +51,6 @@ class HomeContainer extends Component {
       global.searchable="";
       localStorage.setItem('searchable', "");
       console.log(err, "not found, defaulting")
-      this.reloadGames(global.searchable, global.filter)
-
     });
   }
 
