@@ -30,26 +30,27 @@ function reducer(state, action) {
 
 function App() {
 
-
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [formState,setFormState] = useState({
-    email:"",
-    password:""
-  })
-  const [signupFormState,setSignupFormState] = useState({
-    email:"",
-    password:"",
-    name:""
-  })
 
-  const [userState,setUserState] = useState({
+  const [loginFormState, setLoginFormState] = useState({
+    username:"",
+    password:""
+  });
+
+  const [signupFormState, setSignupFormState] = useState({
+    username:"",
+    password:""
+  });
+
+  const [userState, setUserState] = useState({
     token:"",
-    user:{
-    }
-  })
+    user:{}
+  });
 
   useEffect(()=>{
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+    console.log(token);
+    
     if(token){
       API.getProfile(token).then(res=>{
         console.log(res.data);
@@ -74,20 +75,30 @@ function App() {
     
   },[])
 
-  const handleFormSubmit = e =>{
+  const handleLoginFormSubmit = (e) =>{
+
+    // prevent page refresh
     e.preventDefault();
-    API.login(formState).then(res=>{
+
+    // send post request to /auth/login
+    API.login(loginFormState).then(res=>{
+
       console.log(res.data);
-      localStorage.setItem("token",res.data.token)
+      localStorage.setItem("token", res.data.token);
+
+      // set user state to match what was returned by token
       setUserState({
         ...userState,
-        token:res.data.token,
+        token: res.data.token,
         user:{
-          email:res.data.user.email,
           name:res.data.user.name,
           id:res.data.user.id
         }
-      })
+      });
+      setLoginFormState({
+        username:"",
+        password:""
+      });
     }).catch(err=>{
       console.log("error occured")
       console.log(err);
@@ -96,10 +107,6 @@ function App() {
         token:"",
         user:{}
       })
-    })
-    setFormState({
-      email:"",
-      password:""
     })
   }
 
@@ -154,14 +161,17 @@ function App() {
       <Switch>
         <Route exact path="/Login" render={() => (
           <Login 
+
             user={userState.user} 
-            formState={formState} 
-            setFormState={setFormState} 
-            signupFormState={signupFormState} 
+
+            loginFormState={loginFormState} 
+            setLoginFormState={setLoginFormState} 
+            signupFormState={signupFormState}
             setSignupFormState={setSignupFormState}
             handleSignupFormSubmit={handleSignupFormSubmit}
             handleLogout={handleLogout}
-            handleFormSubmit={handleFormSubmit} 
+            handleLoginFormSubmit={handleLoginFormSubmit}
+
           />
         )} />
         <Route exact path="/GamePage/:gameID" component={GamePage} />
