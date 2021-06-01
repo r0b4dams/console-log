@@ -1,2 +1,2 @@
 global.searchable = "";
-global.filter = "";
+global.filter = "&ordering=-metacritic";
