@@ -6,8 +6,8 @@ import WalkGroup from "../WalkGroup"
 import FavGroup from "../FavGroup"
 import Card from "../Card"
 
-import games from "../old/games.json"
-import walkthroughs from "../walkthroughs.json"
+import games from "../testData/games.json"
+import walkthroughs from "../testData/walkthroughs.json"
 
 class DashboardContainer extends Component {
   state = {

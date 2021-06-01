@@ -3,7 +3,6 @@ import API from "../utils/API";
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
 import NextButton from "../NextButton"
-import walkthroughs from "../walkthroughs.json"
 import { AppContext } from '../../App'
 
 class HomeContainer extends Component {
@@ -75,7 +74,7 @@ class HomeContainer extends Component {
             />}
           </div>
           <div className="col">
-            <WalkGroup walkthroughs={walkthroughs}/>
+            <WalkGroup walkthroughs={this.state.walkthroughs}/>
           </div>
         </div>
       </div>
