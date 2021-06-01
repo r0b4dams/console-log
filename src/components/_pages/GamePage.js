@@ -3,25 +3,31 @@ import API from "../utils/API";
 import Walk from "../Walk"
 
 function GamePage({match}) {
+  const [plats,setPlats] = useState([]);
   const [game,setGame] = useState([]);
+  const platforms=[];
   useEffect(() => {
-    API.search(`/${match.params.gameID}`)
+    API.search(`/${match.params.gameID}`, global.filter)
     .then(res=>{
       setGame(res.data);
+      setPlats(res.data.platforms);
     })     
-  }, [])
+  }, [match.params.gameID])
 
   const [walkthroughState,setWalkthroughState] = useState([]);
   useEffect(() => {
     API.getAllWalkthroughs().then(res=>{
         setWalkthroughState(res.data);
-    })     
+    })
   }, [])
 
   let thisWalk = walkthroughState.filter(function (e) {
     return e.game_id === parseInt(match.params.gameID);
   })
 
+  plats.map(platform => (
+    platforms.push(platform.platform.name)
+  ))
   return (
     <>
     <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
@@ -41,7 +47,23 @@ function GamePage({match}) {
           </div>
           <div className="flex-none w-full mt-0.5 font-normal text-left">
             <dd className="text-black">
-              <div className="justify-start py-2 px-1 rounded-full text-sm mr-2 grid grid-rows-1 grid-flow-col"><img className="consoleIcon" src="../assets/images/nintendo N64.png" alt="n64"/><img className="consoleIcon" src="../assets/images/nintendo Switch.png" alt="nSwitch"/>
+              <div className="justify-start py-2 px-1 rounded-full text-sm mr-2 grid grid-rows-1 grid-flow-col">
+              {platforms.map(plat => (
+                    <span key={plat}>
+                      {plat === "PC" && <span>{plat} | </span>} 
+                      {plat === "Linux" && <span>{plat} | </span>} 
+                      {plat === "macOS" && <span>{plat} | </span>} 
+                      {plat === "Android" && <span>{plat} | </span>} 
+                      {plat === "iOS" && <span>{plat} | </span>} 
+                      {plat === "Nintendo Switch" && <span><img className="consoleIcon" src="./assets/images/nintendo Switch.png" alt="nSwitch"/></span>} 
+                      {plat === "Nintendo 64" && <span><img className="consoleIcon" src="./assets/images/nintendo N64.png" alt="n64"/></span>} 
+                      {plat === "Xbox One" && <span>{plat} | </span>} 
+                      {plat === "Xbox 360" && <span><img className="consoleIcon rounded" src="./assets/images/xbox360.png" alt="xbox360"/></span>} 
+                      {plat === "PlayStation 3" && <span>{plat} | </span>} 
+                      {plat === "PlayStation 4" && <span><img className="consoleIcon rounded" src="/assets/images/ps4.png" alt="ps4"/></span>} 
+                      {plat === "PS Vita" && <span>{plat} | </span>} 
+                    </span>
+                  ))}
               </div>
             </dd>
           </div>

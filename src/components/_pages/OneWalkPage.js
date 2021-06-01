@@ -2,20 +2,13 @@ import React,{useEffect,useState} from 'react'
 import API from "../utils/API";
 
 function OneWalk({match}) {
-  const [walkthroughState,setWalkthroughState] = useState([]);
+  const [walkthrough,setWalkthrough] = useState([]);
   useEffect(() => {
-    API.getAllWalkthroughs().then(res=>{
-        setWalkthroughState(res.data);
+    API.getOneWalkthrough(match.params._id).then(res=>{
+        setWalkthrough(res.data);
     })     
-  }, [])
+  }, [match.params._id])
 
-  //filters by ID
-  let walkthrough = walkthroughState.filter(function (e) {
-    return e._id === match.params._id;
-  })
-
-  //converts it to a single object because array should only contain 1
-  walkthrough = walkthrough[0];
   if(walkthrough) {
   return (
     <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
@@ -43,12 +36,9 @@ function OneWalk({match}) {
       </div>
     </article>
   )
+  } else {
+  return;
   }
-  return (
-    <div>
-
-    </div>
-  );
 }
 
 export default OneWalk;

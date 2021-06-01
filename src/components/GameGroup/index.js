@@ -12,9 +12,10 @@ export default function GameGroup({ games }) {
         <NavItem href="/recent">Recent</NavItem>
       </Nav>
       <GameList>
-        {games.map((game) => (
+        {games && games.map((game) => (
           <Game key={game.id} game={game} />
         ))}
+        {!games && <div>Sorry, no matches found</div>}
       </GameList>
     </div>
   )

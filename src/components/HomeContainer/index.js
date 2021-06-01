@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useContext  } from "react";
 import API from "../utils/API";
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
 import NextButton from "../NextButton"
 import walkthroughs from "../walkthroughs.json"
+import { AppContext } from '../../App'
 
 class HomeContainer extends Component {
+
   _isMounted = false;
 
   state = {
@@ -15,27 +17,39 @@ class HomeContainer extends Component {
     walkthroughs: [],
     next: "",
     prev: "",
-    open: false
+    open: false,
+    search: this.props.search
   };
 
   componentDidMount() {
     this._isMounted = true;
-    this.reloadGames("");
+    this.reloadGames(global.searchable, global.filter);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
   }
 
-  reloadGames(query) {
-    API.search(query)
+  reloadGames(query, filter) {
+    console.log("here is the query"+query)
+    console.log("Global: "+global.searchable)
+    API.search(query, filter)
     .then((res) => {
-      this.setState({
-        games: res.data.results,
-        gamesFilter: res.data.results,
-        next: res.data.next,
-        prev: res.data.previous
-      });
+      console.log(res.data.results)
+      if(res.data.results.length) { 
+        this.setState({
+          games: res.data.results,
+          gamesFilter: res.data.results,
+          next: res.data.next,
+          prev: res.data.previous
+        });  
+      } else {
+        const tempGame = []
+        tempGame.push(res.data.results)
+        this.setState({
+          games: tempGame,
+        });   
+      }
     })
     .catch((err) => console.log(err));
   }
@@ -50,12 +64,15 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
+        {/* <div onClick={console.log(this.state.games)}>check games {global.searchable}</div> */}
         <div className="grid grid-flow-col">
           <div className="col">
             <GameGroup games={this.state.games}/>
-            <NextButton 
+            {this.state.games && <NextButton 
                 handleNextSubmit={this.handleNextSubmit}
-            />
+                next={this.state.next}
+                prev={this.state.prev}
+            />}
           </div>
           <div className="col">
             <WalkGroup walkthroughs={walkthroughs}/>

@@ -1,12 +1,13 @@
-const BASEURL = "https://api.rawg.io/api/games";
-const KEY = "?key=2e1926e930f2426e857f633a7a3c2286"
+const BASEURL = 'https://api.rawg.io/api/games';
+const KEY = '?key=2e1926e930f2426e857f633a7a3c2286'
 const axios = require("axios")
 const URL_PREFIX = "http://localhost:3001"
 //const URL_PREFIX = ""
 
 const API = {
-    search: function(CONFIG) {
-      return axios.get(BASEURL + CONFIG + KEY);
+    // const SUFFIX = '&ordering=-metacritic'
+    search: function(CONFIG, SUFFIX) {
+      return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
     },
     login: function (userData) {
         return axios.post(`${URL_PREFIX}/login`, userData)
@@ -15,7 +16,7 @@ const API = {
         return axios.post(`${URL_PREFIX}/signup`, userData)
     },
     getProfile: function (token) {
-        return axios.get(`${URL_PREFIX}/profile`, {
+        return axios.get(`${URL_PREFIX}/dashboard`, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -25,8 +26,8 @@ const API = {
       return axios.get(`${URL_PREFIX}/api/findall`);
     },
     
-    getOneWalkthrough: function () {
-        return axios.get(`${URL_PREFIX}/find/:walkthroughid`);
+    getOneWalkthrough: function (id) {
+        return axios.get(`${URL_PREFIX}/api/find/${id}`);
     },
 
     createWalkthrough: function (data, token) {
