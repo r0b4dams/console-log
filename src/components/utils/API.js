@@ -1,13 +1,31 @@
 const BASEURL = 'https://api.rawg.io/api/games';
-const KEY = '?key=2e1926e930f2426e857f633a7a3c2286'
+const KEY = 'key=2e1926e930f2426e857f633a7a3c2286'
 const axios = require("axios")
 const URL_PREFIX = "http://localhost:3001"
+
 //const URL_PREFIX = ""
-//https://rawg.io/api/games?search=${slugifiedTerm}&key=${process.env.APIKEY}
+
 const API = {
     // const SUFFIX = '&ordering=-metacritic'
+
     search: function(CONFIG, SUFFIX) {
-      return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
+      if (!isNaN(CONFIG) && CONFIG) {
+        //search by game ID
+        console.log("NUMBER: "+CONFIG)
+        CONFIG=`/${CONFIG}?`;
+        return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
+      } else if (!CONFIG) {
+        //blank
+        console.log("BLANK")
+        return axios.get(BASEURL + "?" + KEY + SUFFIX);
+      } else {
+        //For searchables
+        //https://rawg.io/api/games?search=${slugifiedTerm}&key=
+        CONFIG.toLowerCase().replace(/\s+/g, '-');
+        CONFIG = `?search=${CONFIG}&`;
+        console.log("New CONFIG:"+CONFIG)
+        return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
+      } 
     },
     login: function (userData) {
         return axios.post(`${URL_PREFIX}/auth/login`, userData)
