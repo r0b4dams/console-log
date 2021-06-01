@@ -7,7 +7,7 @@ function GamePage({match}) {
   const [game,setGame] = useState([]);
   const platforms=[];
   useEffect(() => {
-    API.search(`/${match.params.gameID}`, global.filter)
+    API.search(`${parseInt(match.params.gameID)}`, global.filter)
     .then(res=>{
       setGame(res.data);
       setPlats(res.data.platforms);
