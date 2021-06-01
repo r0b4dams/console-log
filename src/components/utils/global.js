@@ -1,0 +1,2 @@
+global.searchable = "";
+global.filter = "";
