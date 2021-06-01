@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Dashboard from "../_pages/Dashboard";
-import NavBar from "../NavBar"
 import Footer from "../Footer"
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
@@ -19,7 +18,6 @@ class DashboardContainer extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <Dashboard />
 
         <div className="grid grid-flow-col">

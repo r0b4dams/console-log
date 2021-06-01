@@ -1,9 +1,70 @@
 import React from "react";
+import  { Redirect } from 'react-router-dom'
 
-export default function Login({ children }) {
+export default function Login(props) {
     return (
       <>
-      <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div className="fixed inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div className="inline-block align-bottom bg-gray-300 bg-opacity-75 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full">
+      <div className="bg-blue-500 flex items-center justify-center text-white">Authentication</div>
+      {!props.user.name ? (<>
+        <form onSubmit = {props.handleFormSubmit}> 
+        <input 
+          name="email" 
+          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          placeholder="Username" 
+          value = {props.formState.email} 
+          onChange={(e)=>props.setFormState({...props.formState,email:e.target.value})}/>
+        <input 
+          name="password"  
+          type="password" 
+          autoComplete="current-password" 
+          required 
+          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          placeholder="Password"
+          value = {props.formState.password} 
+          onChange={(e)=>props.setFormState({...props.formState,password:e.target.value})}/>
+        <input 
+          className="bg-blue-500 rounded justify-center text-white"
+          type="submit" 
+          value="login"/>
+      </form>
+      <div className="bg-blue-300 flex items-center justify-center text-white">Signup</div>
+      
+      <form onSubmit = {props.handleSignupFormSubmit}> 
+        <input 
+          name="email" 
+          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          value = {props.signupFormState.email} 
+          onChange={(e)=>props.setSignupFormState({...props.signupFormState,email:e.target.value})}/>
+        <input 
+          name="name" 
+          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          value = {props.signupFormState.name} 
+          onChange={(e)=>props.setSignupFormState({...props.signupFormState,name:e.target.value})}/>
+        <input 
+          name="password"  
+          type="password" 
+          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          value = {props.signupFormState.password} 
+          onChange={(e)=>props.setSignupFormState({...props.signupFormState,password:e.target.value})}/>
+        <input type="submit" value="signup"/>
+      </form>
+      </>):(
+       <>
+      <h1>Welcome back, {props.user.name}</h1>
+      <button onClick={props.handleLogout}>Logout</button>
+      <Redirect to='Dashboard' />
+     </>
+    )}
+</div>
+      </div>
+
+
+
+      {/* design elements below: */}
+      {/* <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div className="inline-block align-bottom bg-gray-300 bg-opacity-75 rounded-lg text-left overflow-hidden shadow-xl   transform transition-all sm:align-middle sm:max-w-lg sm:w-full">
           <div className="bg-blue-500 flex items-center justify-center text-white">
@@ -22,7 +83,10 @@ export default function Login({ children }) {
                   <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300   placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500   focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
                 </div>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between"> */}
+
+
+
                 {/* FUTURE DEVELOPMENT */}
                 {/* <div className="flex items-center">
                   <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w- text-indigo-600   focus:ring-indigo-500 border-gray-300 rounded" />
@@ -33,7 +97,12 @@ export default function Login({ children }) {
                     Forgot your password?
                   </a>
                 </div> */}
-              </div>
+
+
+
+
+
+              {/* </div>
               <div>
                 <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 onClick={() => setShowModal(false)}">
                   <span className="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -45,7 +114,7 @@ export default function Login({ children }) {
                 </button>
               </div>
             </form>
-          </div>
+          </div> */}
   
         {/* <div className="bg-gray-400 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <button type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm   px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2   focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
@@ -55,8 +124,11 @@ export default function Login({ children }) {
             Cancel
           </button>
         </div> */}
-        </div>
-      </div>
+
+
+
+        {/* </div>
+      </div> */}
       </>
       )
   }

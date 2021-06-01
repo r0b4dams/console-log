@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar"
 import { Link, useLocation, Redirect } from "react-router-dom";
 import { AppContext } from '../../App'
 import API from "../utils/API"
+import HomePage from "../_pages/HomePage"
 
 export default function NavBar() {
   const {state, dispatch} = useContext(AppContext);
@@ -17,6 +18,8 @@ export default function NavBar() {
     // changeInputValue(event.target.search.value);
     global.searchable="/"+event.target.search.value;
     // API.search("/"+global.searchable)
+    // window.location.reload(false);
+    return (<HomePage />)
   }
 
   return (

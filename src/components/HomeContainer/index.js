@@ -31,14 +31,25 @@ class HomeContainer extends Component {
   }
 
   reloadGames(query, filter) {
+    console.log("here is the query"+query)
+    console.log("Global: "+global.searchable)
     API.search(query, filter)
     .then((res) => {
-      this.setState({
-        games: res.data.results,
-        gamesFilter: res.data.results,
-        next: res.data.next,
-        prev: res.data.previous
-      });
+      console.log(res.data.results)
+      if(res.data.results.length) { 
+        this.setState({
+          games: res.data.results,
+          gamesFilter: res.data.results,
+          next: res.data.next,
+          prev: res.data.previous
+        });  
+      } else {
+        const tempGame = []
+        tempGame.push(res.data.results)
+        this.setState({
+          games: tempGame,
+        });   
+      }
     })
     .catch((err) => console.log(err));
   }
@@ -53,6 +64,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
+        {/* <div onClick={console.log(this.state.games)}>check games {global.searchable}</div> */}
         <div className="grid grid-flow-col">
           <div className="col">
             <GameGroup games={this.state.games}/>
