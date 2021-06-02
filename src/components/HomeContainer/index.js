@@ -1,9 +1,8 @@
-import React, { Component, useContext  } from "react";
+import React, { Component } from "react";
 import API from "../utils/API";
 import GameGroup from "../GameGroup"
 import WalkGroup from "../WalkGroup"
 import NextButton from "../NextButton"
-import { AppContext } from '../../App'
 
 class HomeContainer extends Component {
 
@@ -74,10 +73,10 @@ class HomeContainer extends Component {
           <div className="col">
             <GameGroup games={this.state.games}/>
             {this.state.games && <NextButton 
-                handleNextSubmit={this.handleNextSubmit}
-                handlePrevSubmit={this.handlePrevSubmit}
-                next={this.state.next}
-                prev={this.state.prev}
+              handleNextSubmit={this.handleNextSubmit}
+              handlePrevSubmit={this.handlePrevSubmit}
+              next={this.state.next}
+              prev={this.state.prev}
             />}
           </div>
           <div className="col">

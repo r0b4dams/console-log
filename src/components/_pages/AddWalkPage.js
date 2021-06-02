@@ -1,9 +1,11 @@
 import userEvent from '@testing-library/user-event';
 import React,{useEffect,useState} from 'react'
-
+import { Link, Redirect } from "react-router-dom";
+import Consoles from "../Consoles"
 import API from "../utils/API";
 
-function AddWalkPage({match}) {
+function AddWalkPage(props) {
+  let match = props.match;
   const [plats,setPlats] = useState([]);
   const [game,setGame] = useState([]);
   const platforms=[];
@@ -15,17 +17,27 @@ function AddWalkPage({match}) {
     })     
   }, [match.params.gameID])
 
-  const [walkthroughState,setWalkthroughState] = useState([]);
-  useEffect(() => {
-    API.getAllWalkthroughs().then(res=>{
-        setWalkthroughState(res.data);
-    })
-  }, [])
+  const handleAddSubmit = (event)=> {
+    // console.log(event.target.WalkthroughLink.value)
+    // console.log(game)
+    alert ("Walkthrough Saved!")
+    let data = 
+      {
+        "rating" : 0,
+        "title" : event.target.WalkthroughTitle.value,
+        "content" : event.target.WalkthroughContent.value,
+        "link" : event.target.WalkthroughLink.value,
+        "user_id" : "user._id",
+        "game_id" : game.id,
+        "gameName" : game.name,
+        "gameImgLink" : game.background_image
+    }
+    {/* need to pass: title, content, link, user_id, game_id, gameName, gameImgLink, rating=0 (possibly already set to default)  */}
+    API.createWalkthrough(data, "user_token")
 
-  let thisWalk = walkthroughState.filter(function (e) {
-    return e.game_id === parseInt(match.params.gameID);
-  })
-
+    return (<Redirect to={`/Dashboard`}/>)
+    // return <Redirect to="/Dashboard" />
+  }
   plats.map(platform => (
     platforms.push(platform.platform.name)
   ))
@@ -49,22 +61,7 @@ function AddWalkPage({match}) {
           <div className="flex-none w-full mt-0.5 font-normal text-left">
             <dd className="text-black">
               <div className="justify-start py-2 px-1 rounded-full text-sm mr-2 grid grid-rows-1 grid-flow-col">
-              {platforms.map(plat => (
-                    <span key={plat}>
-                      {plat === "PC" && <span>{plat} | </span>} 
-                      {plat === "Linux" && <span>{plat} | </span>} 
-                      {plat === "macOS" && <span>{plat} | </span>} 
-                      {plat === "Android" && <span>{plat} | </span>} 
-                      {plat === "iOS" && <span>{plat} | </span>} 
-                      {plat === "Nintendo Switch" && <span><img className="consoleIcon" src="./assets/images/nintendo Switch.png" alt="nSwitch"/></span>} 
-                      {plat === "Nintendo 64" && <span><img className="consoleIcon" src="./assets/images/nintendo N64.png" alt="n64"/></span>} 
-                      {plat === "Xbox One" && <span>{plat} | </span>} 
-                      {plat === "Xbox 360" && <span><img className="consoleIcon rounded" src="./assets/images/xbox360.png" alt="xbox360"/></span>} 
-                      {plat === "PlayStation 3" && <span>{plat} | </span>} 
-                      {plat === "PlayStation 4" && <span><img className="consoleIcon rounded" src="/assets/images/ps4.png" alt="ps4"/></span>} 
-                      {plat === "PS Vita" && <span>{plat} | </span>} 
-                    </span>
-                  ))}
+                <Consoles platforms={platforms}/>
               </div>
             </dd>
           </div>
@@ -76,34 +73,41 @@ function AddWalkPage({match}) {
           </div>
         </dl>
       </div>
-
     </div>
     <div>
-      <h1>
+      <h1 className="text-4xl">
           Walkthrough by [user.name]
       </h1>
     </div>
     <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})`}}>
-      <form>
+
+      <form onSubmit={handleAddSubmit} className="w-full">
         <input 
-          name="Title" 
-          className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          name="WalkthroughTitle"
+          type="text"
+          className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
           // value = "walkthrough.name"
           placeholder="Walkthrough Title"
+          required
         />
         <textarea
-          name="Content"
+          name="WalkthroughContent"
           type="textbox"
-          className="resize appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          className="appearance-none overflow-y-auto h-52 w-full rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90"
           placeholder="Walkthrough Content"
+          required
           >
         </textarea>
         <input 
-          name="Link" 
-          className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+          name="WalkthroughLink"
+          type="text"
+          className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
           // value = "walkthrough.name"
-          placeholder="Link"
+          placeholder="Link (optional)"
         />
+        {/* <Link to={`/Dashboard`}> */}
+          <button className="m-2 p-2 w-1/2 text-white border rounded bg-blue-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Submit</button>
+        {/* </Link> */}
       </form>
     </div>
     </>
