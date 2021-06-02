@@ -1,50 +1,56 @@
 import userEvent from '@testing-library/user-event';
 import React,{useEffect,useState} from 'react'
-import { Link, Redirect } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
 
-function AddWalkPage(props) {
-  let match = props.match;
-  const [plats,setPlats] = useState([]);
-  const [game,setGame] = useState([]);
-  const platforms=[];
-  useEffect(() => {
-    API.search(`${parseInt(match.params.gameID)}`, global.filter)
-    .then(res=>{
-      setGame(res.data);
-      setPlats(res.data.platforms);
-    })     
-  }, [match.params.gameID])
+function UpdateWalkPage({match}) {
+  const history = useHistory();
+  const location = useLocation();
+  // const walkID=location.pathname.replace( /^\D+/g, ''); 
+  // const [plats,setPlats] = useState([]);
+  // const [game,setGame] = useState([]);
+  // const platforms=[];
+  // useEffect(() => {
+  //   API.search(`${parseInt(gameID)}`, global.filter)
+  //   .then(res=>{
+  //     setGame(res.data);
+  //     setPlats(res.data.platforms);
+  //   })     
+  // }, [gameID])
 
-  const handleAddSubmit = (event)=> {
-    // console.log(event.target.WalkthroughLink.value)
-    // console.log(game)
-    alert ("Walkthrough Saved!")
-    let data = 
-      {
-        "rating" : 0,
-        "title" : event.target.WalkthroughTitle.value,
-        "content" : event.target.WalkthroughContent.value,
-        "link" : event.target.WalkthroughLink.value,
-        "user_id" : "user._id",
-        "game_id" : game.id,
-        "gameName" : game.name,
-        "gameImgLink" : game.background_image
-    }
-    {/* need to pass: title, content, link, user_id, game_id, gameName, gameImgLink, rating=0 (possibly already set to default)  */}
-    API.createWalkthrough(data, "user_token")
 
-    return (<Redirect to={`/Dashboard`}/>)
-    // return <Redirect to="/Dashboard" />
-  }
-  plats.map(platform => (
-    platforms.push(platform.platform.name)
-  ))
+  // const [walkthrough,setWalkthrough] = useState([]);
+  // useEffect(() => {
+  //   API.getOneWalkthrough(match.params._id).then(res=>{
+  //       setWalkthrough(res.data);
+  //   })     
+  // }, [match.params._id])
+
+  // const handleUpdateSubmit = (event)=> {
+  //   let data = 
+  //     {
+  //       "title" : event.target.WalkthroughTitle.value,
+  //       "content" : event.target.WalkthroughContent.value,
+  //       "link" : event.target.WalkthroughLink.value,
+  //       "user_id" : userState.user.id,
+  //       "game_id" : game.id,
+  //       "gameName" : game.name,
+  //       "gameImgLink" : game.background_image
+  //     }
+  //   console.log(data)
+  //   alert ("Walkthrough Updated!")
+  //   API.updateWalkthrough(data, userState.token)
+  //   return history.push('/Dashboard');
+  // }
+  // plats.map(platform => (
+  //   platforms.push(platform.platform.name)
+  // ))
   return (
     <>
+    <div className="bg-green-900 text-4xl">UPDATE</div>
     <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
-      <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
+      {/* <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
       <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">
         <h2 className="text-lg font-semibold text-black mb-0.5 text-left">
           {game.name} <span className="text-sm">({game.released})</span>
@@ -76,9 +82,10 @@ function AddWalkPage(props) {
     </div>
     <div>
       <h1 className="text-4xl">
-          Walkthrough by [user.name]
+          Walkthrough by {userState.user.name}
       </h1>
     </div>
+
     <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})`}}>
 
       <form onSubmit={handleAddSubmit} className="w-full">
@@ -105,13 +112,11 @@ function AddWalkPage(props) {
           // value = "walkthrough.name"
           placeholder="Link (optional)"
         />
-        {/* <Link to={`/Dashboard`}> */}
-          <button className="m-2 p-2 w-1/2 text-white border rounded bg-blue-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Submit</button>
-        {/* </Link> */}
-      </form>
+          <button className="m-2 p-2 w-1/2 text-white border rounded bg-green-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Update</button>
+      </form> */}
     </div>
     </>
   );
 }
 
-export default AddWalkPage;
+export default UpdateWalkPage;
