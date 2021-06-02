@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom";
 import API from "../utils/API";
+import Game from "../Game"
 import Walk from "../Walk"
 import Dashboard from "../_pages/Dashboard";
 import Footer from "../Footer"
-import GameGroup from "../GameGroup"
-import WalkGroup from "../WalkGroup"
 import FavGroup from "../FavGroup"
 import Card from "../Card"
 
-import games from "../testData/games.json"
-import walkthroughs from "../testData/walkthroughs.json"
-
-function DashboardContainer({ match, userState }) {
-  const location = useLocation();
-
-  const [gameState, setGameState] = useState([]);
-
+function DashboardContainer({ userState }) {
   const [walkthroughState, setWalkthroughState] = useState([]);
   useEffect(() => {
     API.getUserWalkthrough(userState.user.id).then(res => {
@@ -24,8 +16,6 @@ function DashboardContainer({ match, userState }) {
       setWalkthroughState(res.data);
     })
   }, [userState.user.id])
-
-  console.log(walkthroughState.game_id)
 
   return (
     <div>
@@ -38,7 +28,6 @@ function DashboardContainer({ match, userState }) {
           </Card>
         </div>
         <div className="col">
-          <GameGroup games={games} />
           <h1>Your Walkthroughs:</h1>
           {walkthroughState.map((walkthrough) => (
             <Walk key={walkthrough._id} walkthrough={walkthrough} />
