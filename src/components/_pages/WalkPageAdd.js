@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import React,{useEffect,useState} from 'react'
-import { useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
 
@@ -39,6 +39,7 @@ function AddWalkPage({userState}) {
   plats.map(platform => (
     platforms.push(platform.platform.name)
   ))
+  if(userState.token) {
   return (
     <>
     <div className="bg-red-900 text-4xl">ADD</div>
@@ -105,11 +106,21 @@ function AddWalkPage({userState}) {
           // value = "walkthrough.name"
           placeholder="Link (optional)"
         />
-          <button className="m-2 p-2 w-1/2 text-white border rounded bg-blue-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Submit</button>
+          <button type="submit" className="m-2 p-2 w-1/2 text-white border rounded bg-blue-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Submit</button>
       </form>
     </div>
     </>
-  );
+  )} else {
+    return (
+      <div>
+        Sorry, you must log in or sign up first.
+        <Link to={`/Login`} className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>
+          <button>[ Return Home ]</button>
+        </Link>
+      </div>
+    )
+  }
+
 }
 
 export default AddWalkPage;

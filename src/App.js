@@ -170,8 +170,12 @@ function App() {
         )} />
         <Route exact path="/GamePage/:gameID" component={GamePage} />
         <Route exact path="/Walkthrough/:_id" component={Walkthrough} />
-        <Route exact path="/UpdateWalkthrough/:_id" component={UpdateWalkPage} />
-        <Route exact path="/Dashboard" render={() => (
+        <Route exact path="/UpdateWalkthrough/:_id" >
+          <UpdateWalkPage 
+            userState={userState}
+          />
+        </Route>
+        <Route exact path="/Dashboard/" render={() => (
           <Dashboard
             userState={userState}
           />

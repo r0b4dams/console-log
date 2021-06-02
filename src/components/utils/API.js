@@ -1,8 +1,8 @@
 const BASEURL = 'https://api.rawg.io/api/games';
 const KEY = 'key=2e1926e930f2426e857f633a7a3c2286'
 const axios = require("axios")
-const URL_PREFIX = "http://localhost:3001"
-//const URL_PREFIX = ""
+// const URL_PREFIX = "http://localhost:3001"
+const URL_PREFIX = "https://console-log-backend.herokuapp.com"
 //https://rawg.io/api/games?search=${slugifiedTerm}&key=${process.env.APIKEY}
 const API = {
     // const SUFFIX = '&ordering=-metacritic'
