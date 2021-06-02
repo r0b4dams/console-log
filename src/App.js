@@ -1,5 +1,5 @@
 import React, {useEffect,useState, useReducer } from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import './App.css';
 import API from "./components/utils/API";
 import Dashboard from "./components/DashboardContainer";
@@ -12,7 +12,6 @@ import AddWalkPage from "./components/_pages/AddWalkPage"
 import Login from "./components/_pages/Login"
 // import Dashboard from "./components/DashboardContainer"  //will need to update once Dashboard is created
 import SearchPage from "./components/_pages/SearchPage"
-import {useHistory} from "react-router-dom";
 export const AppContext = React.createContext();
 
 const initialState = {
@@ -176,14 +175,11 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <AppContext.Provider value={{ state, dispatch }}>
       <NavBar handleSearchSubmit={handleSearchSubmit}/>
       <Switch>
         <Route exact path="/Login" render={() => (
           <Login 
-
             user={userState.user} 
-
             loginFormState={loginFormState} 
             setLoginFormState={setLoginFormState} 
             signupFormState={signupFormState}
@@ -191,7 +187,6 @@ function App() {
             handleSignupFormSubmit={handleSignupFormSubmit}
             handleLogout={handleLogout}
             handleLoginFormSubmit={handleLoginFormSubmit}
-
           />
         )} />
         <Route exact path="/GamePage/:gameID" component={GamePage} />
@@ -202,7 +197,6 @@ function App() {
         <Route path="/" component={HomePage} />
       </Switch>
       <Footer />
-      </AppContext.Provider>
     </div>
     </Router>
   );

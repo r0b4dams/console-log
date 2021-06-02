@@ -1,14 +1,9 @@
-import React, { useContext } from 'react';
 import SearchBar from "../SearchBar"
 import { Link, useLocation, Redirect } from "react-router-dom";
-import { AppContext } from '../../App'
 import HomePage from "../_pages/HomePage"
 
 export default function NavBar() {
-  const {state, dispatch} = useContext(AppContext);
-  const changeInputValue = (newValue) => {
-    dispatch({ type: 'UPDATE_INPUT', data: newValue,});
-  };
+
   const location = useLocation();
 
   const handleFormSubmit = (event)=>{
@@ -17,7 +12,7 @@ export default function NavBar() {
     global.searchable=event.target.search.value;
     localStorage.setItem('searchable', event.target.search.value);
     window.location.reload(false);
-    return <Redirect to="HomePage" />
+    return (<HomePage />)
   }
 
   return (
