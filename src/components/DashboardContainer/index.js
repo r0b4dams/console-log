@@ -12,27 +12,20 @@ import Card from "../Card"
 import games from "../testData/games.json"
 import walkthroughs from "../testData/walkthroughs.json"
 
-function DashboardContainer({ match }) {
+function DashboardContainer({ match, userState }) {
   const location = useLocation();
 
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    API.search(`${parseInt(match.params.userID)}`, global.filter)
-      .then(res => {
-        setUser(res.data);
-      })
-  }, [match.params.userID])
+  const [gameState, setGameState] = useState([]);
 
   const [walkthroughState, setWalkthroughState] = useState([]);
   useEffect(() => {
-    API.getAllWalkthroughs().then(res => {
+    API.getUserWalkthrough(userState.user.id).then(res => {
+      console.log(res.data)
       setWalkthroughState(res.data);
     })
-  }, [])
+  }, [userState.user.id])
 
-  let thisWalk = walkthroughState.filter(function (e) {
-    return e.user_id === parseInt(match.params.userID);
-  })
+  console.log(walkthroughState.game_id)
 
   return (
     <div>
@@ -47,7 +40,7 @@ function DashboardContainer({ match }) {
         <div className="col">
           <GameGroup games={games} />
           <h1>Your Walkthroughs:</h1>
-          {thisWalk.map((walkthrough) => (
+          {walkthroughState.map((walkthrough) => (
             <Walk key={walkthrough._id} walkthrough={walkthrough} />
           ))}
         </div>

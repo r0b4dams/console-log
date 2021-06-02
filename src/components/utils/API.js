@@ -53,8 +53,8 @@ const API = {
         return axios.get(`${URL_PREFIX}/api/find/${id}`);
     },
 
-    getUserWalkthrough: function () {
-        return axios.get(`${URL_PREFIX}/userwalkthroughs/:userid`);
+    getUserWalkthrough: function (id) {
+        return axios.get(`${URL_PREFIX}/api/userwalkthroughs/${id}`);
     },
 
     createWalkthrough: function (data, token) {
