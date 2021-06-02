@@ -7,6 +7,7 @@ import API from "../utils/API";
 function UpdateWalkPage({match}) {
   const history = useHistory();
   const location = useLocation();
+  console.log(match)
   // const walkID=location.pathname.replace( /^\D+/g, ''); 
   // const [plats,setPlats] = useState([]);
   // const [game,setGame] = useState([]);
