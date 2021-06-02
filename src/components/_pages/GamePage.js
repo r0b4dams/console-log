@@ -83,7 +83,7 @@ function GamePage({match}) {
       ))}
     </div>
     <Link to={`/AddWalkthrough/${game.id}`} className={location.pathname === "/AddWalkthrough" ? "nav-link active" : "nav-link"}>
-      <button className="rounded-full py-1 px-6 bg-red-700 border-2 border-red-600 hover:bg-red-500 text-white">+ Add a Walkthrough</button>
+      <button className="rounded-full py-1 px-6 bg-yellow-400 border-2 border-yellow-300 hover:bg-yellow-300">+ Add a Walkthrough</button>
     </Link>
     </>
   );

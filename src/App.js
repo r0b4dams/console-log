@@ -175,7 +175,7 @@ function App() {
             userState={userState}
           />
         </Route>
-        <Route exact path="/Dashboard/:_id" render={() => (
+        <Route exact path="/Dashboard/" render={() => (
           <Dashboard
             userState={userState}
           />
