@@ -1,5 +1,5 @@
 import React, {useEffect,useState, useReducer } from "react";
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import './App.css';
 import API from "./components/utils/API";
 import Dashboard from "./components/DashboardContainer";
@@ -8,31 +8,14 @@ import Footer from "./components/Footer"
 import HomePage from "./components/_pages/HomePage"
 import GamePage from "./components/_pages/GamePage"
 import Walkthrough from "./components/_pages/OneWalkPage"
-import AddWalkPage from "./components/_pages/AddWalkPage"
+import AddWalkPage from "./components/_pages/WalkPageAdd"
+import UpdateWalkPage from "./components/_pages/WalkPageUpdate"
 import Login from "./components/_pages/Login"
 // import Dashboard from "./components/DashboardContainer"  //will need to update once Dashboard is created
 import SearchPage from "./components/_pages/SearchPage"
-import {useHistory} from "react-router-dom";
 export const AppContext = React.createContext();
 
-const initialState = {
-  searchText: '',
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-      case 'UPDATE_INPUT':
-          return {
-            searchText: action.data
-          };
-      default:
-          return initialState;
-  }
-}
-
 function App() {
-
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   const [loginFormState, setLoginFormState] = useState({
     username:"",
@@ -167,23 +150,15 @@ function App() {
     })
     localStorage.removeItem("token")
   }
-
-  const handleSearchSubmit = (event)=>{
-    alert("yay, form submitted")
-    return <HomePage />
-  }
-  
+ 
   return (
     <Router>
     <div className="App">
-      <AppContext.Provider value={{ state, dispatch }}>
-      <NavBar handleSearchSubmit={handleSearchSubmit}/>
+      <NavBar/>
       <Switch>
         <Route exact path="/Login" render={() => (
           <Login 
-
             user={userState.user} 
-
             loginFormState={loginFormState} 
             setLoginFormState={setLoginFormState} 
             signupFormState={signupFormState}
@@ -191,18 +166,25 @@ function App() {
             handleSignupFormSubmit={handleSignupFormSubmit}
             handleLogout={handleLogout}
             handleLoginFormSubmit={handleLoginFormSubmit}
-
           />
         )} />
         <Route exact path="/GamePage/:gameID" component={GamePage} />
         <Route exact path="/Walkthrough/:_id" component={Walkthrough} />
-        <Route exact path="/Dashboard" component={Dashboard} />
+        <Route exact path="/UpdateWalkthrough/:_id" component={UpdateWalkPage} />
+        <Route exact path="/Dashboard/:_id" render={() => (
+          <Dashboard
+            userState={userState}
+          />
+        )} />
         <Route exact path="/Search" component={SearchPage} />
-        <Route exact path="/AddWalkthrough/:gameID" component={AddWalkPage} />
+        <Route exact path="/AddWalkthrough/:gameID" render={() => (
+          <AddWalkPage
+            userState={userState}
+          />
+        )} />
         <Route path="/" component={HomePage} />
       </Switch>
       <Footer />
-      </AppContext.Provider>
     </div>
     </Router>
   );
