@@ -2,7 +2,6 @@ import React,{useEffect,useState} from 'react'
 import { Link, useLocation } from "react-router-dom";
 import API from "../utils/API";
 import Walk from "../Walk"
-import Nav from "../Nav"
 
 function GamePage({match}) {
   const location = useLocation();
