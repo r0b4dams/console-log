@@ -75,7 +75,7 @@ function OneWalk(props) {
             <dd className="text-md">Last Updated: {walkthrough.updated}</dd>
             <div className="absolute bottom-0 right-0">
               <dt className="sr-only">Link</dt>
-              <dd className="text-md"><a href={walkthrough.link}>{walkthrough.link}</a></dd>
+              <dd className="text-md"><a href={walkthrough.link} target="_blank">{walkthrough.link}</a></dd>
             </div>
           </dl>
         </div>
