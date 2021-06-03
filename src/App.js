@@ -29,7 +29,8 @@ function App() {
 
   const [userState, setUserState] = useState({
     token:"",
-    user:{}
+    user:{},
+    favs:[]
   });
 
   const history = useHistory();
@@ -49,14 +50,16 @@ function App() {
           token:token,
           user:{
             id:res.data._id,
-            name:res.data.username
+            name:res.data.username,
+            favs:res.data.favs
           }
         })
       }).catch(err=>{
         console.log("no logged in user")
         setUserState({
           token:"",
-          user:{}
+          user:{},
+          favs:[]
         })
       })
     } else {
@@ -84,7 +87,8 @@ function App() {
         user:{
           name:res.data.user.username,
           id:res.data.user._id
-        }
+        },
+        favs: res.data.favs
       });
 
       // reset login form state
@@ -99,7 +103,8 @@ function App() {
       localStorage.removeItem("token");
       setUserState({
         token:"",
-        user:{}
+        user:{},
+        favs:[]
       })
     })
   }
@@ -122,19 +127,20 @@ function App() {
         user:{
           name:res.data.user.username,
           id:res.data.user._id
-        }
+        },
+        fav: res.data.users.favs 
       });
       // if (!res.err) {
       //   history.push("/Dashboard");
       // }
-
     }).catch(err=>{
       console.log("error occured")
       console.log(err);
       localStorage.removeItem("token");
       setUserState({
         token:"",
-        user:{}
+        user:{},
+        favs:[]
       })
     })
     setSignupFormState({
@@ -146,7 +152,8 @@ function App() {
   const handleLogout = ()=>{
     setUserState({
       token:"",
-      user:{}
+      user:{},
+      favs:[]
     })
     localStorage.removeItem("token")
   }
@@ -154,7 +161,10 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <NavBar/>
+      <NavBar 
+        userState={userState}
+        handleLogout={handleLogout}
+      />
       <Switch>
         <Route exact path="/Login" render={() => (
           <Login 
@@ -169,7 +179,9 @@ function App() {
           />
         )} />
         <Route exact path="/GamePage/:gameID" component={GamePage} />
-        <Route exact path="/Walkthrough/:_id" component={Walkthrough} />
+        <Route exact path="/Walkthrough/:_id">
+          <Walkthrough userState={userState}/>
+        </Route>
         <Route exact path="/UpdateWalkthrough/:_id" >
           <UpdateWalkPage 
             userState={userState}

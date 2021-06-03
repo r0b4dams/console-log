@@ -9,13 +9,35 @@ import FavGroup from "../FavGroup"
 import Card from "../Card"
 
 function DashboardContainer({ userState }) {
+  console.log("Dashboard: "+userState.token)
   const [walkthroughState, setWalkthroughState] = useState([]);
   useEffect(() => {
     API.getUserWalkthrough(userState.user.id).then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       setWalkthroughState(res.data);
     })
   }, [userState.user.id])
+
+  const [favWalkthrough,setfavWalkthrough] = useState([]);
+  useEffect(() => {
+    API.getAllWalkthroughs().then(res=>{
+      setfavWalkthrough(res.data);
+    })     
+  }, [])
+
+  useEffect(() => {
+    API.getProfile(userState.token).then(res => {
+      console.log("user data:" + res.data.user)
+    })
+  }, [userState.user.id])
+
+  console.log("userState: "+ userState.favs)
+  console.log(favWalkthrough)
+  let favWalk = favWalkthrough.filter(function (e) {
+    // return userState.favs.includes(e._id);  //filter for favorites
+  })
+
+  console.log(favWalk)
 
   return (
     <div>
@@ -30,7 +52,7 @@ function DashboardContainer({ userState }) {
         <div className="col">
           <h1>Your Walkthroughs:</h1>
           {walkthroughState.map((walkthrough) => (
-            <Walk key={walkthrough._id} walkthrough={walkthrough} />
+            <Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState}/>
           ))}
         </div>
       </div>
@@ -38,6 +60,5 @@ function DashboardContainer({ userState }) {
     </div>
   );
 }
-
 
 export default DashboardContainer;
