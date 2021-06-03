@@ -5,27 +5,51 @@ import Rating from "../Rating"
 import { useRouteMatch } from "react-router-dom";
 import moment from 'moment';
 
-function OneWalk(props) {
-  const { userState } = props;
+function OneWalk({userState}) {
   let match = useRouteMatch("/Walkthrough/:_id");
-  console.log(match)
-  console.log(userState.user.name)
-  const [walkthrough, setWalkthrough] = useState([]);
+  const [fav,setFav] = useState(); 
+  const [walkthrough,setWalkthrough] = useState([]);
   useEffect(() => {
     API.getOneWalkthrough(match.params._id).then(res => {
       setWalkthrough(res.data);
     })
   }, [match.params._id])
 
-  const [fav, setFav] = useState(false);
-  const handleFav = () => {
-    return (fav) ? setFav(false) : setFav(true);
-  }
-  console.log(fav)
 
-  if (walkthrough) {
-    return (
-      <>
+  useEffect(() => {
+    if(userState.user.id) {
+    API.getUserFav(userState.user.id).then(res => {
+      const favArray=[];
+      res.data.favs.forEach(element => {
+        favArray.push(element._id)
+      });
+      setFav(favArray.includes(walkthrough._id))
+    })
+  }
+  },[fav, userState.user.id])
+
+  const handleFav = ()=>{
+    if (fav) {
+      setFav(false)
+      API.removeFavorite(userState.user.id,match.params._id,userState.token);
+    } else {
+      setFav(true);
+      API.addFavorite(userState.user.id,match.params._id,userState.token);
+    }
+  }
+
+  if(walkthrough) {
+  return (
+    <>
+    {userState.user.name && 
+      <div className="min-w-0 relative flex-auto">
+        Rate: <Rating />
+      </div>
+    }
+    <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
+      backgroundImage: `url(${walkthrough.gameImgLink})` 
+    }}>
+      <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
         <div className="relative mx-8">
           <dl className="flex flex-wrap font-medium">
             <dt className="sr-only">Date</dt>
@@ -42,11 +66,6 @@ function OneWalk(props) {
             Rate: <Rating />
           </div>
         }
-        <article className="artOp bg-cover p-1 flex space-x-4 mx-8 rounded-lg hover:bg-red-700" style={{
-          backgroundImage: `url(${walkthrough.gameImgLink})`
-        }}>
-          <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
-
             <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
               {walkthrough.title}
             </h2>

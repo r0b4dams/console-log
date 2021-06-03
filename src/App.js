@@ -11,7 +11,6 @@ import Walkthrough from "./components/_pages/OneWalkPage"
 import AddWalkPage from "./components/_pages/WalkPageAdd"
 import UpdateWalkPage from "./components/_pages/WalkPageUpdate"
 import Login from "./components/_pages/Login"
-// import Dashboard from "./components/DashboardContainer"  //will need to update once Dashboard is created
 import SearchPage from "./components/_pages/SearchPage"
 export const AppContext = React.createContext();
 
@@ -30,7 +29,6 @@ function App() {
   const [userState, setUserState] = useState({
     token:"",
     user:{},
-    favs:[]
   });
 
   const history = useHistory();
