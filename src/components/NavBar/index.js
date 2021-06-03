@@ -1,18 +1,20 @@
 import SearchBar from "../SearchBar"
-import { Link, useLocation, Redirect } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import HomePage from "../_pages/HomePage"
 
-export default function NavBar() {
-
+export default function NavBar( props ) {
   const location = useLocation();
+  const history = useHistory();
 
   const handleFormSubmit = (event)=>{
     event.preventDefault();
     // changeInputValue(event.target.search.value);
     global.searchable=event.target.search.value;
     localStorage.setItem('searchable', event.target.search.value);
+    if(location.pathname === "/") {
     window.location.reload(false);
-    return (<HomePage />)
+    }
+    return history.push('/');
   }
 
   return (
@@ -26,8 +28,15 @@ export default function NavBar() {
         </Link>
       </div>
       <div className="text-right"><SearchBar handleFormSubmit={handleFormSubmit}/></div>
-      <div className="p-2 text-right"><Link to="/Signup" className={location.pathname === "/Signup" ? "nav-link active" : "nav-link"}>SIGN UP</Link>/<Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>
-      <div className="p-2 text-right"><Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link></div>
+      {!props.userState.user.name && <div className="p-2 text-right"><Link to="/Signup" className={location.pathname === "/Signup" ? "nav-link active" : "nav-link"}>SIGN UP</Link>/<Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {props.userState.user.name && 
+        <span>
+        <div className="p-2 text-right">
+          <Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>
+          <a href="/" className="p-2 text-right" onClick={props.handleLogout}>Logout</a>
+        </div>
+        </span>
+      }
     </div>
   )
 }
