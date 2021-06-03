@@ -5,10 +5,10 @@ import Rating from "../Rating"
 import { useRouteMatch } from "react-router-dom";
 import moment from 'moment';
 
-function OneWalk({userState}) {
+function OneWalk({ userState }) {
   let match = useRouteMatch("/Walkthrough/:_id");
-  const [fav,setFav] = useState(); 
-  const [walkthrough,setWalkthrough] = useState([]);
+  const [fav, setFav] = useState();
+  const [walkthrough, setWalkthrough] = useState([]);
   useEffect(() => {
     API.getOneWalkthrough(match.params._id).then(res => {
       setWalkthrough(res.data);
@@ -17,39 +17,30 @@ function OneWalk({userState}) {
 
 
   useEffect(() => {
-    if(userState.user.id) {
-    API.getUserFav(userState.user.id).then(res => {
-      const favArray=[];
-      res.data.favs.forEach(element => {
-        favArray.push(element._id)
-      });
-      setFav(favArray.includes(walkthrough._id))
-    })
-  }
-  },[fav, userState.user.id])
+    if (userState.user.id) {
+      API.getUserFav(userState.user.id).then(res => {
+        const favArray = [];
+        res.data.favs.forEach(element => {
+          favArray.push(element._id)
+        });
+        setFav(favArray.includes(walkthrough._id))
+      })
+    }
+  }, [fav, userState.user.id])
 
-  const handleFav = ()=>{
+  const handleFav = () => {
     if (fav) {
       setFav(false)
-      API.removeFavorite(userState.user.id,match.params._id,userState.token);
+      API.removeFavorite(userState.user.id, match.params._id, userState.token);
     } else {
       setFav(true);
-      API.addFavorite(userState.user.id,match.params._id,userState.token);
+      API.addFavorite(userState.user.id, match.params._id, userState.token);
     }
   }
 
-  if(walkthrough) {
-  return (
-    <>
-    {userState.user.name && 
-      <div className="min-w-0 relative flex-auto">
-        Rate: <Rating />
-      </div>
-    }
-    <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
-      backgroundImage: `url(${walkthrough.gameImgLink})` 
-    }}>
-      <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
+  if (walkthrough) {
+    return (
+      <>
         <div className="relative mx-8">
           <dl className="flex flex-wrap font-medium">
             <dt className="sr-only">Date</dt>
@@ -60,12 +51,21 @@ function OneWalk({userState}) {
             </div>
           </dl>
         </div>
-
         {userState.user.name &&
           <div className="min-w-0 relative flex-auto">
             Rate: <Rating />
           </div>
         }
+        <article className="artOp bg-cover p-1 flex space-x-4 mx-8 rounded-lg hover:bg-red-700" style={{
+          backgroundImage: `url(${walkthrough.gameImgLink})`
+        }}>
+          <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
+
+            {userState.user.name &&
+              <div className="min-w-0 relative flex-auto">
+                Rate: <Rating />
+              </div>
+            }
             <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
               {walkthrough.title}
             </h2>
