@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
 import './style.css';
 import Rating from "../Rating"
@@ -11,9 +11,9 @@ function OneWalk(props) {
   console.log(userState.user.name)
   const [walkthrough,setWalkthrough] = useState([]);
   useEffect(() => {
-    API.getOneWalkthrough(match.params._id).then(res=>{
-        setWalkthrough(res.data);
-    })     
+    API.getOneWalkthrough(match.params._id).then(res => {
+      setWalkthrough(res.data);
+    })
   }, [match.params._id])
 
   const [fav,setFav] = useState(false);
@@ -58,10 +58,31 @@ function OneWalk(props) {
         </dl>
       </div>
     </article>
+
+    <div className="mt-4 mx-8">
+          <dl className="flex flex-wrap font-medium">
+            <dt className="sr-only">Game Title</dt>
+            <dd className="text-xl underline">Game: {walkthrough.gameName}</dd>
+          </dl>
+          <dl className="flex flex-wrap font-medium">
+            <dd className="text-lg">{walkthrough.content}</dd>
+          </dl>
+        </div>
+
+        <div className="relative mx-8 fixed">
+          <dl className="flex flex-wrap font-medium min-h-screen items-end">
+            <dt className="sr-only">Date</dt>
+            <dd className="text-md">Last Updated: {walkthrough.updated}</dd>
+            <div className="absolute bottom-0 right-0">
+              <dt className="sr-only">Link</dt>
+              <dd className="text-md"><a href={walkthrough.link}>{walkthrough.link}</a></dd>
+            </div>
+          </dl>
+        </div>
     </>
   )
   } else {
-  return;
+    return;
   }
 }
 
