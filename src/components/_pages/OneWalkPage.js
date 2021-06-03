@@ -4,11 +4,9 @@ import './style.css';
 import Rating from "../Rating"
 import { useRouteMatch } from "react-router-dom";
 
-function OneWalk(props) {
-  const {userState} = props;
+function OneWalk({userState}) {
   let match = useRouteMatch("/Walkthrough/:_id");
-  console.log(match)
-  console.log(userState.user.name)
+  const [fav,setFav] = useState(); 
   const [walkthrough,setWalkthrough] = useState([]);
   useEffect(() => {
     API.getOneWalkthrough(match.params._id).then(res => {
@@ -16,11 +14,29 @@ function OneWalk(props) {
     })
   }, [match.params._id])
 
-  const [fav,setFav] = useState(false);
-  const handleFav = ()=>{
-    return (fav) ? setFav(false) : setFav(true);
+
+  useEffect(() => {
+    if(userState.user.id) {
+    API.getUserFav(userState.user.id).then(res => {
+      const favArray=[];
+      res.data.favs.forEach(element => {
+        favArray.push(element._id)
+      });
+      setFav(favArray.includes(walkthrough._id))
+    })
   }
-  console.log(fav)
+  },[fav, userState.user.id])
+
+  const handleFav = ()=>{
+    if (fav) {
+      setFav(false)
+      API.removeFavorite(userState.user.id,match.params._id,userState.token);
+    } else {
+      setFav(true);
+      API.addFavorite(userState.user.id,match.params._id,userState.token);
+    }
+  }
+
   if(walkthrough) {
   return (
     <>

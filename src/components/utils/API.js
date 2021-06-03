@@ -70,6 +70,10 @@ const API = {
         return axios.get(`${URL_PREFIX}/api/userwalkthroughs/${id}`);
     },
 
+    getUserFav: function (id) {
+        return axios.get(`${URL_PREFIX}/api/user/${id}`);
+    },
+
     createWalkthrough: function (data, token) {
         return axios.post(`${URL_PREFIX}/api/create`, data, {
             headers: {
@@ -86,6 +90,20 @@ const API = {
     },
     deleteWalkthrough: function (id, token) {
         return axios.delete(`${URL_PREFIX}/api/delete/:walkthroughid/${id}`, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+    },
+    addFavorite: function (userID, walkthroughID, token) {
+        return axios.put(`${URL_PREFIX}/api/addfavorite/${walkthroughID}/${userID}`, token, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+    },
+    removeFavorite: function (userID, walkthroughID, token) {
+        return axios.put(`${URL_PREFIX}/api/removefavorite/${walkthroughID}/${userID}`, token, {
             headers: {
                 authorization: `Bearer ${token}`
             }
