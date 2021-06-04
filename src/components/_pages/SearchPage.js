@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { AppContext } from '../../App'
+import '../assets/SearchPage.css';
 
 export default function NavBar() {
   const {state, dispatch} = useContext(AppContext);

@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { Link, useLocation, useHistory } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
+import '../assets/WalkPageAdd.css';
 
 function AddWalkPage({userState}) {
   console.log(userState)
