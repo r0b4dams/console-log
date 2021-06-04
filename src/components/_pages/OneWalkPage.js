@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-import './style.css';
+import '../assets/OneWalkPage.css';
 import Rating from "../Rating"
 import { useRouteMatch } from "react-router-dom";
 import moment from 'moment';
