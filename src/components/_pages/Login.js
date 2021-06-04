@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from 'react-router-dom'
+import '../assets/Login.css';
 
 export default function Login(props) {
   return (

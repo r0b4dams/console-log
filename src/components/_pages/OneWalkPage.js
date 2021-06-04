@@ -85,7 +85,7 @@ function OneWalk({ userState }) {
              Rate: <Rating userState={userState} walkthrough={walkthrough}/>
               </div>
             } */}
-            <h2 className="text-xl font-semibold text-black mb-0.5 text-left">
+            <h2 className="text-3xl font-semibold text-black mb-0.5 text-left">
               {walkthrough.title}
             </h2>
             <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
