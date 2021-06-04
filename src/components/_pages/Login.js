@@ -1,14 +1,13 @@
 import React from "react";
 import { Redirect } from 'react-router-dom'
-import '../assets/Login.css';
 
 export default function Login(props) {
   return (
     <>
-      <div className="fixed inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div className="bg-login bg-cover bg-no-repeat fixed inset-x-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div className="inline-block align-bottom bg-gray-300 bg-opacity-75 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full">
-          <div id="heading" className="flex items-center justify-center text-white">Login</div>
+          <div className="bg-primary flex items-center justify-center text-white">Login</div>
           {!props.user.name ? (<>
             <form onSubmit={props.handleLoginFormSubmit}>
               <input
@@ -29,13 +28,12 @@ export default function Login(props) {
                 onChange={(e) => props.setLoginFormState({ ...props.loginFormState, password: e.target.value })}
               />
               <input
-                className="p-1 rounded justify-center text-white"
-                id="button"
+                className="bg-secondary p-1 rounded justify-center text-white"
                 type="submit"
                 value="Login"
               />
             </form>
-            <div id="heading" className="flex items-center justify-center text-white">Sign Up</div>
+            <div className="bg-primary flex items-center justify-center text-white">Sign Up</div>
 
             <form onSubmit={props.handleSignupFormSubmit}>
               <input
@@ -51,7 +49,7 @@ export default function Login(props) {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 value={props.signupFormState.password}
                 onChange={(e) => props.setSignupFormState({ ...props.signupFormState, password: e.target.value })} />
-              <input className="p-1 rounded justify-center text-white" id="button" type="submit" value="Sign Up" />
+              <input className="bg-secondary p-1 rounded justify-center text-white" type="submit" value="Sign Up" />
             </form>
           </>) : (
             <>
