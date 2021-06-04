@@ -54,7 +54,7 @@ function DashboardContainer({ userState }) {
     <div>
       <Dashboard />
 
-      <div className="grid grid-flow-col w-full">
+      <div className="grid grid-cols-2 w-full">
         <div className="content-left mx-8 p-2 flex space-x-4 bg-gray-200 bg-opacity-75 rounded border-2">
           {/* <Card heading="Favorites">
             <FavGroup />
