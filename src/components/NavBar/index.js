@@ -43,8 +43,8 @@ export default function NavBar( props ) {
   }
 
   return (
-    <div className="py-1 pr-3 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
-      <div className="text-Left">
+    <div className="pl-52 py-1 pr-52 py-5 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
+      <div className="">
         <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
           <img src="assets/images/Title.png" className="object-contain h-8" alt=""/>
         </Link>
@@ -52,7 +52,7 @@ export default function NavBar( props ) {
 
       {/* start search bar*/}
       <div className="text-right">
-        <div className="grid grid grid-rows-1 grid-flow-col pl-5 flex items-center justify-center">
+        <div className="grid grid grid-rows-1 grid-flow-col flex">
 
           {/* Click here to start speech-to-text */}
           {/* Button will not render if browser does not support web speech api */}
@@ -85,7 +85,7 @@ export default function NavBar( props ) {
       </div>
       {/* end search bar*/}
 
-      {!props.userState.user.name && <div className="p-2 text-right"><Link to="/Signup" className={location.pathname === "/Signup" ? "nav-link active" : "nav-link"}>SIGN UP</Link>/<Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {!props.userState.user.name && <div className="pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
       
       {props.userState.user.name && 
         <span>
