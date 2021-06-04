@@ -16,7 +16,7 @@ function Rating(props) {
 
     function handleRating(index) {
       setRating(index);
-      API.addRating(rating, walkthrough._id, userState.token)
+      API.addRating(index, walkthrough._id, userState.token)
     }
     return (
       <div className="star-rating">
