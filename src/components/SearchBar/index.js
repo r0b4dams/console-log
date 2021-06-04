@@ -1,6 +1,13 @@
+import SpeechRecognition, {useSpeechRecognition,} from "react-speech-recognition";
+
+
 export default function SearchBar(props) {
     return (
     <div className="grid grid grid-rows-1 grid-flow-col pl-5 flex items-center justify-center">
+
+      {/* Click here to start speech-to-text */}
+      <button onClick={SpeechRecognition.startListening}>Voice Search</button>
+
       <form onSubmit={props.handleFormSubmit}>
         <span className="inset-y-0 left-0 flex items-center pl-2 center">
         <input 
