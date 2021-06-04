@@ -64,8 +64,6 @@ function OneWalk({ userState }) {
       <>
         <div className="relative mx-8">
           <dl className="flex flex-wrap font-medium">
-            <dt className="sr-only">Date</dt>
-            <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
             <div className="absolute top-0 right-0">
               <dt className="sr-only">Link</dt>
               <dd className="text-md"><a href={walkthrough.link} target="_blank">{walkthrough.link}</a></dd>
@@ -118,6 +116,13 @@ function OneWalk({ userState }) {
               <dd className="text-lg">{walkthrough.content}</dd>
             </dl>
           </div>
+        </div>
+
+        <div className="relative mx-8 my-2">
+          <dl className="flex flex-wrap font-medium">
+            <dt className="sr-only">Date</dt>
+            <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
+          </dl>
         </div>
       </>
     )
