@@ -69,12 +69,12 @@ function GamePage({ match }) {
       <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})` }}>
         <div className="min-w-0 bg-gray-200 bg-opacity-80 rounded px-1">
           {game.website &&
-            <div className="my-4">
+            <div className="my-4 bg-white inline-block p-2 rounded-full">
               Official Website: <a href={game.website} target="_blank" rel="noreferrer">{game.website}</a>
             </div>
           }
 
-          <div className="m-2" dangerouslySetInnerHTML={{ __html: game.description }}>
+          <div className="m-2 text-left" dangerouslySetInnerHTML={{ __html: game.description }}>
           </div>
         </div>
       </div>
