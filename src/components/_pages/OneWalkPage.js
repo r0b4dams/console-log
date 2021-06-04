@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-import './style.css';
+import '../assets/OneWalkPage.css';
 import Rating from "../Rating"
 import { useRouteMatch } from "react-router-dom";
 import moment from 'moment';
@@ -16,16 +16,16 @@ function OneWalk({ userState }) {
   }, [match.params._id])
 
   useEffect(() => {
-    if(userState.user.id && walkthrough._id) {
-    API.getUserFav(userState.user.id).then(res => {
-      const favArray=[];
-      res.data.favs.forEach(element => {
-        favArray.push(element._id)
-      });
-      setFav(favArray.includes(walkthrough._id))
-    })
-  }
-  },[fav, userState.user.id])
+    if (userState.user.id && walkthrough._id) {
+      API.getUserFav(userState.user.id).then(res => {
+        const favArray = [];
+        res.data.favs.forEach(element => {
+          favArray.push(element._id)
+        });
+        setFav(favArray.includes(walkthrough._id))
+      })
+    }
+  }, [fav, userState.user.id])
 
   const handleFav = () => {
     if (fav) {
@@ -57,8 +57,8 @@ function OneWalk({ userState }) {
   //         <div>
   //           <dt className="sr-only">Game</dt>
   //           <dd>{walkthrough.gameName}</dd>
-  
-  
+
+
   if (walkthrough) {
     return (
       <>
@@ -74,27 +74,21 @@ function OneWalk({ userState }) {
         </div>
         {userState.user.name &&
           <div className="min-w-0 relative flex-auto">
-             Rate: <Rating userState={userState} walkthrough={walkthrough}/>
+            Rate: <Rating userState={userState} walkthrough={walkthrough} />
           </div>
         }
-        <article className="artOp bg-cover p-1 flex space-x-4 mx-8 rounded-lg hover:bg-red-700" style={{
-          backgroundImage: `url(${walkthrough.gameImgLink})`
-        }}>
-          <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
+        <article className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mx-8 rounded border-2">
+          <div className="min-w-0 relative flex-auto px-1">
 
             {/* {userState.user.name &&
               <div className="min-w-0 relative flex-auto">
              Rate: <Rating userState={userState} walkthrough={walkthrough}/>
               </div>
             } */}
-            <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
+            <h2 className="text-xl font-semibold text-black mb-0.5 text-left">
               {walkthrough.title}
             </h2>
             <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
-              <div>
-                <dt className="sr-only">Game</dt>
-                <dd>{walkthrough.gameName}</dd>
-              </div>
               <div className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
                 <dt className="text-amber-500">
                   <span className="sr-only">Rating</span>
@@ -112,14 +106,18 @@ function OneWalk({ userState }) {
           </div>
         </article>
 
-        <div className="mt-4 mx-8">
-          <dl className="flex flex-wrap font-medium">
-            <dt className="sr-only">Game Title</dt>
-            <dd className="text-xl underline">Game: {walkthrough.gameName}</dd>
-          </dl>
-          <dl className="flex flex-wrap font-medium">
-            <dd className="text-lg">{walkthrough.content}</dd>
-          </dl>
+        <div className="artOp bg-cover p-1 flex space-x-4 mt-4 mx-8 rounded-lg hover:bg-red-700" style={{
+          backgroundImage: `url(${walkthrough.gameImgLink})`
+        }}>
+          <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
+            <dl className="flex flex-wrap font-medium">
+              <dt className="sr-only">Game Title</dt>
+              <dd className="text-xl underline">{walkthrough.gameName}</dd>
+            </dl>
+            <dl className="flex flex-wrap font-medium m-2">
+              <dd className="text-lg">{walkthrough.content}</dd>
+            </dl>
+          </div>
         </div>
       </>
     )
