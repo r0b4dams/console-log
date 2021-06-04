@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import API from "../utils/API";
-import Game from "../Game"
 import Walk from "../Walk"
 import Dashboard from "../_pages/Dashboard";
 import Footer from "../Footer"
-import FavGroup from "../FavGroup"
-import Card from "../Card"
-import WalkList from "../WalkList"
 
 function DashboardContainer({ userState }) {
   const history = useHistory();
-  const location = useLocation();
   const [favList, setFavList] = useState();
   const [walkthroughState, setWalkthroughState] = useState([]);
   const [delWalk, setDelWalk] = useState();

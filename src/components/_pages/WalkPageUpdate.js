@@ -1,13 +1,12 @@
-import userEvent from '@testing-library/user-event';
 import React,{useEffect,useState} from 'react'
-import { useLocation, useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
 import '../assets/WalkPageUpdate.css';
 
 function UpdateWalkPage({userState}) {
   const history = useHistory();
-  const location = useLocation();
+
   let match = useRouteMatch("/UpdateWalkthrough/:_id");
   const [walkthrough,setWalkthrough] = useState([]);
 
@@ -19,7 +18,9 @@ function UpdateWalkPage({userState}) {
 
   const [plats,setPlats] = useState([]);
   const [game,setGame] = useState([]);
+
   const platforms=[];
+  
  console.log(walkthrough)
   useEffect(() => {
     API.search(`${parseInt(walkthrough.game_id)}`, global.filter)
