@@ -1,3 +1,5 @@
+import '../assets/Dashboard.css';
+
 function Dashboard(props) {
     return (
       <div className="">

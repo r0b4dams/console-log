@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import API from "../utils/API";
 import Walk from "../Walk"
 import Consoles from "../Consoles"
+import '../assets/GamePage.css';
 
 function GamePage({ match }) {
   const location = useLocation();

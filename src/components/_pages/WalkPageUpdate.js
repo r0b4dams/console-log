@@ -3,6 +3,7 @@ import React,{useEffect,useState} from 'react'
 import { useLocation, useHistory, useRouteMatch } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
+import '../assets/WalkPageUpdate.css';
 
 function UpdateWalkPage({userState}) {
   const history = useHistory();
