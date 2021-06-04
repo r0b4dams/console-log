@@ -7,16 +7,17 @@ import moment from 'moment';
 
 function OneWalk({ userState }) {
   let match = useRouteMatch("/Walkthrough/:_id");
-  const [fav, setFav] = useState();
-  const [walkthrough, setWalkthrough] = useState([]);
+  const [fav, setFav] = useState(false);
+  const [walkthrough, setWalkthrough] = useState({});
   useEffect(() => {
     API.getOneWalkthrough(match.params._id).then(res => {
       setWalkthrough(res.data);
     })
   }, [match.params._id])
 
+  // don't break this again!
   useEffect(() => {
-    if (userState.user.id && walkthrough._id) {
+     if (userState.user.id ) {
       API.getUserFav(userState.user.id).then(res => {
         const favArray = [];
         res.data.favs.forEach(element => {
@@ -25,7 +26,7 @@ function OneWalk({ userState }) {
         setFav(favArray.includes(walkthrough._id))
       })
     }
-  }, [fav, userState.user.id])
+  }, [ userState.user.id, walkthrough._id])
 
   const handleFav = () => {
     if (fav) {
@@ -62,6 +63,7 @@ function OneWalk({ userState }) {
   if (walkthrough) {
     return (
       <>
+      {console.log(userState)}
         <div className="relative mx-8">
           <dl className="flex flex-wrap font-medium">
             <dt className="sr-only">Date</dt>
