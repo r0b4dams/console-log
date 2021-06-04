@@ -89,7 +89,7 @@ const API = {
         });
     },
     deleteWalkthrough: function (id, token) {
-        return axios.delete(`${URL_PREFIX}/api/delete/:walkthroughid/${id}`, {
+        return axios.delete(`${URL_PREFIX}/api/deletewalkthrough/${id}`, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -108,7 +108,14 @@ const API = {
                 authorization: `Bearer ${token}`
             }
         });
-    }
+    },
+    addRating: function (rating, walkthroughID, token) {
+        return axios.put(`${URL_PREFIX}/api/ratewalkthrough/${walkthroughID}/${rating}`, token, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+    },
 }
 
 export default API
