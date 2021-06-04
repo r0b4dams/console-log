@@ -69,7 +69,7 @@ function GamePage({ match }) {
       <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})` }}>
         <div className="min-w-0 bg-gray-200 bg-opacity-80 rounded px-1">
           {game.website &&
-            <div className="my-2">
+            <div className="my-4">
               Official Website: <a href={game.website} target="_blank" rel="noreferrer">{game.website}</a>
             </div>
           }
@@ -78,15 +78,17 @@ function GamePage({ match }) {
           </div>
         </div>
       </div>
-    Walkthroughs:
+      <div className="p-2 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
+        Walkthroughs:
       <div className="w-1/2 content-center m-8">
-        {thisWalk.map((walkthrough) => (
-          <Walk key={walkthrough._id} walkthrough={walkthrough} />
-        ))}
+          {thisWalk.map((walkthrough) => (
+            <Walk key={walkthrough._id} walkthrough={walkthrough} />
+          ))}
+        </div>
+        <Link to={`/AddWalkthrough/${game.id}`} className={location.pathname === "/AddWalkthrough" ? "nav-link active" : "nav-link"}>
+          <button className="rounded-full py-1 px-6 bg-yellow-400 border-2 border-yellow-300 hover:bg-yellow-300">+ Add a Walkthrough</button>
+        </Link>
       </div>
-      <Link to={`/AddWalkthrough/${game.id}`} className={location.pathname === "/AddWalkthrough" ? "nav-link active" : "nav-link"}>
-        <button className="rounded-full py-1 px-6 bg-yellow-400 border-2 border-yellow-300 hover:bg-yellow-300">+ Add a Walkthrough</button>
-      </Link>
     </>
   );
 }

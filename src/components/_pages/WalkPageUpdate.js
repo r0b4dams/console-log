@@ -84,7 +84,7 @@ function UpdateWalkPage({userState}) {
       </div>
     </div>
     <div>
-      <h1 className="text-4xl">
+      <h1 className="text-4xl text-white">
           Walkthrough by {userState.user.name}
       </h1>
     </div>

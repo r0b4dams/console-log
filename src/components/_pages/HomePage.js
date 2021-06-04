@@ -2,8 +2,8 @@ import HomeContainer from "../HomeContainer";
 
 function HomePage(props) {
   return (
-    <div className="">
-      <h1 className="">Thanks for visiting!  {global.searchable && <div></div>}</h1>
+    <div className="p-2 bg-gray-200 bg-opacity-75 mb-2 mx-48 rounded border-2">
+      <h1 className="">{global.searchable && <div></div>}</h1>
       <HomeContainer />
     </div> 
   );
