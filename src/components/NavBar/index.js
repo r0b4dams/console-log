@@ -1,7 +1,11 @@
+import React, {useState} from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import SpeechRecognition, {useSpeechRecognition,} from "react-speech-recognition";
 
 export default function NavBar( props ) {
+  // user this to store user's voice search
+  const [voiceSearchTerm, setVoiceSearchTerm] = useState("");
+  const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
 
   const location = useLocation();
   const history = useHistory();
@@ -19,12 +23,24 @@ export default function NavBar( props ) {
 
   const commands = [
     {
-      command: "search *",
-      callback: () => document.getElementById("search-form").requestSubmit(),
+      command: ["Search *",
+                "Search for *", 
+                "Find *", 
+                "Get *"
+               ],
+      callback: (game) => voiceSearch(game)
     },
   ];
 
-  const { transcript } = useSpeechRecognition({ commands });
+  // tell react-speech-recognition to use commands
+  useSpeechRecognition({ commands });
+
+  // callback function that populates form input with user's voice search
+  // then submits form (as if it were typed and submit button clicked)
+  const voiceSearch = (searchTerm) => {
+      setVoiceSearchTerm(searchTerm);                         // update form value
+      document.getElementById("search-form").requestSubmit()  // submit form
+  }
 
   return (
     <div className="py-1 pr-3 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
@@ -40,18 +56,20 @@ export default function NavBar( props ) {
 
           {/* Click here to start speech-to-text */}
           {/* Button will not render if browser does not support web speech api */}
-          {/* TODO: Need to style this button */}
-          {SpeechRecognition.browserSupportsSpeechRecognition() && <button onClick={SpeechRecognition.startListening}>Voice Search</button>}
+          {SpeechRecognition.browserSupportsSpeechRecognition() && 
+          <button onClick={SpeechRecognition.startListening}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+            </svg>
+          </button>}
 
           <form id="search-form" onSubmit={handleFormSubmit}>
             <span className="inset-y-0 left-0 flex items-center pl-2 center">
 
               <input className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 "
-                  // transcript contains what the user said
-                  // TODO: remove command word from defaultValue field
-                  defaultValue={transcript} 
+                  defaultValue={voiceSearchTerm} 
                           type="text" 
-                   placeholder="Find a Game..." 
+                   placeholder={searchPlaceholder}
                           name="search"
               />
 
