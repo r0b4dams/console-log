@@ -1,57 +1,63 @@
 import userEvent from '@testing-library/user-event';
 import React,{useEffect,useState} from 'react'
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, useRouteMatch } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
 
-function UpdateWalkPage({match}) {
+function UpdateWalkPage({userState}) {
   const history = useHistory();
   const location = useLocation();
-  console.log(match)
-  // const walkID=location.pathname.replace( /^\D+/g, ''); 
-  // const [plats,setPlats] = useState([]);
-  // const [game,setGame] = useState([]);
-  // const platforms=[];
-  // useEffect(() => {
-  //   API.search(`${parseInt(gameID)}`, global.filter)
-  //   .then(res=>{
-  //     setGame(res.data);
-  //     setPlats(res.data.platforms);
-  //   })     
-  // }, [gameID])
+  let match = useRouteMatch("/UpdateWalkthrough/:_id");
+  const [walkthrough,setWalkthrough] = useState([]);
 
+  useEffect(() => {
+    API.getOneWalkthrough(match.params._id).then(res => {
+      setWalkthrough(res.data);
+    })
+  }, [match.params._id])
 
-  // const [walkthrough,setWalkthrough] = useState([]);
-  // useEffect(() => {
-  //   API.getOneWalkthrough(match.params._id).then(res=>{
-  //       setWalkthrough(res.data);
-  //   })     
-  // }, [match.params._id])
+  const [plats,setPlats] = useState([]);
+  const [game,setGame] = useState([]);
+  const platforms=[];
 
-  // const handleUpdateSubmit = (event)=> {
-  //   let data = 
-  //     {
-  //       "title" : event.target.WalkthroughTitle.value,
-  //       "content" : event.target.WalkthroughContent.value,
-  //       "link" : event.target.WalkthroughLink.value,
-  //       "user_id" : userState.user.id,
-  //       "game_id" : game.id,
-  //       "gameName" : game.name,
-  //       "gameImgLink" : game.background_image
-  //     }
-  //   console.log(data)
-  //   alert ("Walkthrough Updated!")
-  //   API.updateWalkthrough(data, userState.token)
-  //   return history.push('/Dashboard');
-  // }
-  // plats.map(platform => (
-  //   platforms.push(platform.platform.name)
-  // ))
+  useEffect(() => {
+    API.search(`${parseInt(walkthrough.game_id)}`, global.filter)
+    .then(res=>{
+      setGame(res.data);
+      setPlats(res.data.platforms);
+    })     
+  }, [walkthrough.game_id])
+
+  useEffect(() => {
+    if(plats) {
+    plats.map(platform => (
+      platforms.push(platform.platform.name)
+    ))
+    }
+  }, [plats])
+
+  const handleUpdateSubmit = (event)=> {
+    let data = 
+      {
+        "title" : event.target.WalkthroughTitle.value,
+        "content" : event.target.WalkthroughContent.value,
+        "link" : event.target.WalkthroughLink.value,
+        "user_id" : userState.user.id,
+        "game_id" : game.id,
+        "gameName" : game.name,
+        "gameImgLink" : game.background_image
+      }
+    console.log(JSON.stringify(data))
+    alert ("Walkthrough Updated!")
+    API.updateWalkthrough(data, userState.token)
+    return history.push('/Dashboard');
+  }
+  if(platforms && game) {
   return (
     <>
     <div className="bg-green-900 text-4xl">UPDATE</div>
     <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
-      {/* <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
+      <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
       <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">
         <h2 className="text-lg font-semibold text-black mb-0.5 text-left">
           {game.name} <span className="text-sm">({game.released})</span>
@@ -89,12 +95,12 @@ function UpdateWalkPage({match}) {
 
     <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})`}}>
 
-      <form onSubmit={handleAddSubmit} className="w-full">
+      <form onSubmit={handleUpdateSubmit} className="w-full">
         <input 
           name="WalkthroughTitle"
           type="text"
           className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
-          // value = "walkthrough.name"
+          defaultValue = {walkthrough.title}
           placeholder="Walkthrough Title"
           required
         />
@@ -102,6 +108,7 @@ function UpdateWalkPage({match}) {
           name="WalkthroughContent"
           type="textbox"
           className="appearance-none overflow-y-auto h-52 w-full rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90"
+          defaultValue = {walkthrough.content}
           placeholder="Walkthrough Content"
           required
           >
@@ -110,14 +117,14 @@ function UpdateWalkPage({match}) {
           name="WalkthroughLink"
           type="text"
           className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
-          // value = "walkthrough.name"
+          defaultValue = {walkthrough.link}
           placeholder="Link (optional)"
         />
           <button className="m-2 p-2 w-1/2 text-white border rounded bg-green-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Update</button>
-      </form> */}
+      </form>
     </div>
     </>
-  );
+  );}
 }
 
 export default UpdateWalkPage;

@@ -16,7 +16,7 @@ function OneWalk({userState}) {
 
 
   useEffect(() => {
-    if(userState.user.id) {
+    if(userState.user.id && walkthrough._id) {
     API.getUserFav(userState.user.id).then(res => {
       const favArray=[];
       res.data.favs.forEach(element => {
@@ -42,7 +42,7 @@ function OneWalk({userState}) {
     <>
     {userState.user.name && 
       <div className="min-w-0 relative flex-auto">
-        Rate: <Rating />
+        Rate: <Rating userState={userState} walkthrough={walkthrough}/>
       </div>
     }
     <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
