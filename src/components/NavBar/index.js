@@ -1,13 +1,13 @@
-import SearchBar from "../SearchBar"
 import { Link, useLocation, useHistory } from "react-router-dom";
+import SpeechRecognition, {useSpeechRecognition,} from "react-speech-recognition";
 
 export default function NavBar( props ) {
+
   const location = useLocation();
   const history = useHistory();
 
   const handleFormSubmit = (event)=>{
     event.preventDefault();
-    // changeInputValue(event.target.search.value);
     global.searchable=event.target.search.value;
     localStorage.setItem('searchable', event.target.search.value);
     if(location.pathname === "/") {
@@ -16,18 +16,56 @@ export default function NavBar( props ) {
     return history.push('/');
   }
 
+  const commands = [
+    {
+      command: "*",
+      // callback: handleFormSubmit(),
+    },
+  ];
+
+  const { transcript } = useSpeechRecognition({ commands });
+
   return (
     <div className="py-1 pr-3 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
       <div className="text-Left">
-        {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-          </svg> */}
         <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
           <img src="assets/images/Title.png" className="object-contain h-8" alt=""/>
         </Link>
       </div>
-      <div className="text-right"><SearchBar handleFormSubmit={handleFormSubmit}/></div>
+
+      {/* start search bar*/}
+      <div className="text-right">
+        <div className="grid grid grid-rows-1 grid-flow-col pl-5 flex items-center justify-center">
+
+          {/* Click here to start speech-to-text */}
+          {/* Button will not render if browser does not support web speech api */}
+          {/* TODO: Need to style this button */}
+          {SpeechRecognition.browserSupportsSpeechRecognition() && <button onClick={SpeechRecognition.startListening}>Voice Search</button>}
+
+          <form onSubmit={handleFormSubmit}>
+            <span className="inset-y-0 left-0 flex items-center pl-2 center">
+
+              <input className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 "
+                  defaultValue={transcript} // 
+                          type="text" 
+                  placeholder="Find a Game..." 
+                          name="search"
+              />
+
+              <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
+                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </button>
+
+            </span>
+          </form>
+        </div>
+      </div>
+      {/* end search bar*/}
+
       {!props.userState.user.name && <div className="p-2 text-right"><Link to="/Signup" className={location.pathname === "/Signup" ? "nav-link active" : "nav-link"}>SIGN UP</Link>/<Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      
       {props.userState.user.name && 
         <span>
         <div className="p-2 text-right">
