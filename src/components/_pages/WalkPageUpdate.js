@@ -19,7 +19,7 @@ function UpdateWalkPage({userState}) {
   const [plats,setPlats] = useState([]);
   const [game,setGame] = useState([]);
   const platforms=[];
-
+ console.log(walkthrough)
   useEffect(() => {
     API.search(`${parseInt(walkthrough.game_id)}`, global.filter)
     .then(res=>{
@@ -39,17 +39,13 @@ function UpdateWalkPage({userState}) {
   const handleUpdateSubmit = (event)=> {
     let data = 
       {
-        "title" : event.target.WalkthroughTitle.value,
-        "content" : event.target.WalkthroughContent.value,
-        "link" : event.target.WalkthroughLink.value,
-        "user_id" : userState.user.id,
-        "game_id" : game.id,
-        "gameName" : game.name,
-        "gameImgLink" : game.background_image
+        title : event.target.WalkthroughTitle.value,
+        content : event.target.WalkthroughContent.value,
+        link : event.target.WalkthroughLink.value
       }
-    console.log(JSON.stringify(data))
+    // console.log(JSON.stringify(data))
     alert ("Walkthrough Updated!")
-    API.updateWalkthrough(data, userState.token)
+    API.updateWalkthrough(data, walkthrough._id, userState.token)
     return history.push('/Dashboard');
   }
   if(platforms && game) {
