@@ -66,8 +66,6 @@ function OneWalk({ userState }) {
       {console.log(userState)}
         <div className="relative mx-8">
           <dl className="flex flex-wrap font-medium">
-            <dt className="sr-only">Date</dt>
-            <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
             <div className="absolute top-0 right-0">
               <dt className="sr-only">Link</dt>
               <dd className="text-md"><a href={walkthrough.link} target="_blank">{walkthrough.link}</a></dd>
@@ -87,7 +85,7 @@ function OneWalk({ userState }) {
              Rate: <Rating userState={userState} walkthrough={walkthrough}/>
               </div>
             } */}
-            <h2 className="text-xl font-semibold text-black mb-0.5 text-left">
+            <h2 className="text-3xl font-semibold text-black mb-0.5 text-left">
               {walkthrough.title}
             </h2>
             <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
@@ -120,6 +118,13 @@ function OneWalk({ userState }) {
               <dd className="text-lg">{walkthrough.content}</dd>
             </dl>
           </div>
+        </div>
+
+        <div className="relative mx-8 my-2">
+          <dl className="flex flex-wrap font-medium">
+            <dt className="sr-only">Date</dt>
+            <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
+          </dl>
         </div>
       </>
     )

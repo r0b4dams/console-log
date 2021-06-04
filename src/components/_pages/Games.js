@@ -1,3 +1,5 @@
+import '../assets/Games.css';
+
 function Games(props) {
     return (
       <div className="">

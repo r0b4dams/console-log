@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { Link, useLocation, useHistory } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
+import '../assets/WalkPageAdd.css';
 
 function AddWalkPage({userState}) {
   console.log(userState)
@@ -41,7 +42,7 @@ function AddWalkPage({userState}) {
   if(userState.token) {
   return (
     <>
-    <div className="bg-red-900 text-4xl">ADD</div>
+    <div className="bg-red-700 text-4xl p-2">Add Walkthough</div>
     <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
       <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
       <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">

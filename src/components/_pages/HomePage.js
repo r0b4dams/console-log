@@ -1,4 +1,5 @@
 import HomeContainer from "../HomeContainer";
+import '../assets/HomePage.css';
 
 function HomePage(props) {
   return (
