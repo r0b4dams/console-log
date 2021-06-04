@@ -1,5 +1,5 @@
-import React, {useEffect,useState, useReducer } from "react";
-import { BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
+import React, {useEffect,useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import API from "./components/utils/API";
 import Dashboard from "./components/DashboardContainer";
@@ -31,9 +31,6 @@ function App() {
     user:{},
   });
 
-  const history = useHistory();
-
-
   // complete
   useEffect(()=>{
     const token = localStorage.getItem("token");
@@ -48,16 +45,14 @@ function App() {
           token:token,
           user:{
             id:res.data._id,
-            name:res.data.username,
-            favs:res.data.favs
+            name:res.data.username
           }
         })
       }).catch(err=>{
         console.log("no logged in user")
         setUserState({
           token:"",
-          user:{},
-          favs:[]
+          user:{}
         })
       })
     } else {
@@ -85,8 +80,7 @@ function App() {
         user:{
           name:res.data.user.username,
           id:res.data.user._id
-        },
-        favs: res.data.favs
+        }
       });
 
       // reset login form state
@@ -101,8 +95,7 @@ function App() {
       localStorage.removeItem("token");
       setUserState({
         token:"",
-        user:{},
-        favs:[]
+        user:{}
       })
     })
   }
@@ -125,8 +118,7 @@ function App() {
         user:{
           name:res.data.user.username,
           id:res.data.user._id
-        },
-        fav: res.data.users.favs 
+        }
       });
       // if (!res.err) {
       //   history.push("/Dashboard");
@@ -137,8 +129,7 @@ function App() {
       localStorage.removeItem("token");
       setUserState({
         token:"",
-        user:{},
-        favs:[]
+        user:{}
       })
     })
     setSignupFormState({
@@ -150,8 +141,7 @@ function App() {
   const handleLogout = ()=>{
     setUserState({
       token:"",
-      user:{},
-      favs:[]
+      user:{}
     })
     localStorage.removeItem("token")
   }
@@ -185,7 +175,7 @@ function App() {
             userState={userState}
           />
         </Route>
-        <Route exact path="/Dashboard/" render={() => (
+        <Route path="/Dashboard/" render={() => (
           <Dashboard
             userState={userState}
           />

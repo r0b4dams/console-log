@@ -1,6 +1,5 @@
 import SearchBar from "../SearchBar"
 import { Link, useLocation, useHistory } from "react-router-dom";
-import HomePage from "../_pages/HomePage"
 
 export default function NavBar( props ) {
   const location = useLocation();

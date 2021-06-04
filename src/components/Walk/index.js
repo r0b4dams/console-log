@@ -1,10 +1,15 @@
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Walk( {walkthrough} ) {
+  let averageRating = (walkthrough.ratings.reduce((a, b) => a + b, 0)/walkthrough.ratings.length).toFixed(2);
+  averageRating = +averageRating || 0;
+
+
   const location = useLocation();
     return (
       <Link to={`/Walkthrough/${walkthrough._id}`} className={location.pathname === "/Walkthrough" ? "nav-link active" : "nav-link"}>
-      <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
+      <article className="artOp bg-cover p-1 flex rounded-lg hover:bg-red-700" style={{ 
         backgroundImage: `url(${walkthrough.gameImgLink})` 
       }}>
         <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
@@ -24,7 +29,7 @@ export default function Walk( {walkthrough} ) {
                 </svg>
 
               </dt>
-              <dd>{walkthrough.rating}</dd>
+              <dd>{averageRating}</dd>
             </div>
           </dl>
         </div>

@@ -15,18 +15,17 @@ function OneWalk({ userState }) {
     })
   }, [match.params._id])
 
-
   useEffect(() => {
-    if (userState.user.id) {
-      API.getUserFav(userState.user.id).then(res => {
-        const favArray = [];
-        res.data.favs.forEach(element => {
-          favArray.push(element._id)
-        });
-        setFav(favArray.includes(walkthrough._id))
-      })
-    }
-  }, [fav, userState.user.id])
+    if(userState.user.id && walkthrough._id) {
+    API.getUserFav(userState.user.id).then(res => {
+      const favArray=[];
+      res.data.favs.forEach(element => {
+        favArray.push(element._id)
+      });
+      setFav(favArray.includes(walkthrough._id))
+    })
+  }
+  },[fav, userState.user.id])
 
   const handleFav = () => {
     if (fav) {
@@ -38,6 +37,28 @@ function OneWalk({ userState }) {
     }
   }
 
+  // if(walkthrough) {
+  // return (
+  //   <>
+  //   {userState.user.name && 
+  //     <div className="min-w-0 relative flex-auto">
+  //       Rate: <Rating userState={userState} walkthrough={walkthrough}/>
+  //     </div>
+  //   }
+  //   <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
+  //     backgroundImage: `url(${walkthrough.gameImgLink})` 
+  //   }}>
+  //     <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
+
+  //       <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
+  //         {walkthrough.title}
+  //       </h2>
+  //       <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+  //         <div>
+  //           <dt className="sr-only">Game</dt>
+  //           <dd>{walkthrough.gameName}</dd>
+  
+  
   if (walkthrough) {
     return (
       <>
@@ -53,7 +74,7 @@ function OneWalk({ userState }) {
         </div>
         {userState.user.name &&
           <div className="min-w-0 relative flex-auto">
-            Rate: <Rating />
+             Rate: <Rating userState={userState} walkthrough={walkthrough}/>
           </div>
         }
         <article className="artOp bg-cover p-1 flex space-x-4 mx-8 rounded-lg hover:bg-red-700" style={{
@@ -61,11 +82,11 @@ function OneWalk({ userState }) {
         }}>
           <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
 
-            {userState.user.name &&
+            {/* {userState.user.name &&
               <div className="min-w-0 relative flex-auto">
-                Rate: <Rating />
+             Rate: <Rating userState={userState} walkthrough={walkthrough}/>
               </div>
-            }
+            } */}
             <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
               {walkthrough.title}
             </h2>
