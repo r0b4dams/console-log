@@ -10,6 +10,7 @@ export default function NavBar( props ) {
     event.preventDefault();
     global.searchable=event.target.search.value;
     localStorage.setItem('searchable', event.target.search.value);
+
     if(location.pathname === "/") {
     window.location.reload(false);
     }
@@ -18,8 +19,8 @@ export default function NavBar( props ) {
 
   const commands = [
     {
-      command: "*",
-      // callback: handleFormSubmit(),
+      command: "search *",
+      callback: () => document.getElementById("search-form").requestSubmit(),
     },
   ];
 
@@ -42,13 +43,15 @@ export default function NavBar( props ) {
           {/* TODO: Need to style this button */}
           {SpeechRecognition.browserSupportsSpeechRecognition() && <button onClick={SpeechRecognition.startListening}>Voice Search</button>}
 
-          <form onSubmit={handleFormSubmit}>
+          <form id="search-form" onSubmit={handleFormSubmit}>
             <span className="inset-y-0 left-0 flex items-center pl-2 center">
 
               <input className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 "
-                  defaultValue={transcript} // 
+                  // transcript contains what the user said
+                  // TODO: remove command word from defaultValue field
+                  defaultValue={transcript} 
                           type="text" 
-                  placeholder="Find a Game..." 
+                   placeholder="Find a Game..." 
                           name="search"
               />
 
