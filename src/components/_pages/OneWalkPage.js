@@ -38,28 +38,6 @@ function OneWalk({ userState }) {
     }
   }
 
-  // if(walkthrough) {
-  // return (
-  //   <>
-  //   {userState.user.name && 
-  //     <div className="min-w-0 relative flex-auto">
-  //       Rate: <Rating userState={userState} walkthrough={walkthrough}/>
-  //     </div>
-  //   }
-  //   <article className="artOp bg-cover p-1 flex space-x-4 mr-8 rounded-lg hover:bg-red-700" style={{ 
-  //     backgroundImage: `url(${walkthrough.gameImgLink})` 
-  //   }}>
-  //     <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1">
-
-  //       <h2 className="text-sm font-semibold text-black mb-0.5 text-left">
-  //         {walkthrough.title}
-  //       </h2>
-  //       <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
-  //         <div>
-  //           <dt className="sr-only">Game</dt>
-  //           <dd>{walkthrough.gameName}</dd>
-
-
   if (walkthrough) {
     return (
       <>
@@ -68,7 +46,7 @@ function OneWalk({ userState }) {
           <dl className="flex flex-wrap font-medium">
             <div className="absolute top-0 right-0">
               <dt className="sr-only">Link</dt>
-              <dd className="text-md"><a href={walkthrough.link} target="_blank">{walkthrough.link}</a></dd>
+              <dd className="text-md"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
             </div>
           </dl>
         </div>
