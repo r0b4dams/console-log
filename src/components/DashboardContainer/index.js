@@ -7,7 +7,7 @@ import Footer from "../Footer"
 function DashboardContainer({ userState }) {
   const [favList, setFavList] = useState();
   const [walkthroughState, setWalkthroughState] = useState([]);
-  
+
   // used for generating user's walkthroughs
   useEffect(() => {
     if (userState.user.id) {
@@ -29,16 +29,18 @@ function DashboardContainer({ userState }) {
       })
     }
   }, [userState.user.id])
-  
+
   return (
-    <div>
+    <div className="mx-48">
       <Dashboard />
 
       <div className="grid grid-cols-2 w-full">
-        <div className="content-left mx-8 p-2 flex space-x-4 bg-gray-200 bg-opacity-75 rounded border-2">
+        <div className="content-left mx-8 space-x-8 w-11/12 p-2 bg-gray-200 bg-opacity-75 rounded border-2">
           <h1 className="text-lg mb-2">Your Favorites:</h1>
           {favList && favList.map((walkthrough) => (
-            <Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState} />
+            <span className="grid grid-cols-6 gap-0 " key={walkthrough._id}>
+              <div className="col-span-5"><Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState} /></div>
+            </span>
           ))}
         </div>
         <div className="content-right space-x-8 w-11/12 p-2 bg-gray-200 bg-opacity-75 rounded border-2">
