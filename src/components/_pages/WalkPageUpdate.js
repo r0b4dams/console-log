@@ -32,7 +32,7 @@ function UpdateWalkPage({ userState }) {
         platforms.push(platform.platform.name)
       ))
     }
-  }, [])
+  })
 
   const handleUpdateSubmit = (event) => {
     let data =
