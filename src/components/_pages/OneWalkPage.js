@@ -50,15 +50,7 @@ function OneWalk({ userState }) {
 
   if (walkthrough) {
     return (
-      <>
-        <div className="relative mx-8">
-          <dl className="flex flex-wrap font-medium">
-            <div className="absolute top-0 right-0">
-              <dt className="sr-only">Link</dt>
-              <dd className="text-md"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
-            </div>
-          </dl>
-        </div>
+      <div className="mx-48">
         {userState.user.name &&
           <div className="min-w-0 relative flex-auto">
             <Rating userState={userState} walkthrough={walkthrough} />
@@ -111,6 +103,10 @@ function OneWalk({ userState }) {
           <dl className="flex flex-wrap font-medium">
             <dt className="sr-only">Date</dt>
             <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
+            <div className="absolute bottom-0 right-0">
+              <dt className="sr-only">Link</dt>
+              <dd className="text-md"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
+            </div>
           </dl>
         </div>
         {owner && 
@@ -120,7 +116,7 @@ function OneWalk({ userState }) {
           {/* <button className="outline-false focus:outline-none p-3 mx-3 rounded bg-gray-200" onClick={() => { handleDelete(walkthrough._id) }}>❌Delete</button> */}
         </div>
         }
-      </>
+      </div>
     )
   } else {
     return;
