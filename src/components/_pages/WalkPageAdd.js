@@ -87,8 +87,8 @@ function AddWalkPage({userState}) {
           name="WalkthroughTitle"
           type="text"
           className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
-          // value = "walkthrough.name"
           placeholder="Walkthrough Title"
+          maxLength={40}
           required
         />
         <textarea
