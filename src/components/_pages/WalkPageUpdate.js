@@ -48,8 +48,8 @@ function UpdateWalkPage({ userState }) {
   }
   if (platforms && game) {
     return (
-      <>
-        <div className="bg-green-600 text-4xl p-2">Update Walkthrough</div>
+      <div className="mx-48">
+        <div className="bg-green-600 text-4xl p-2 mx-8">Update Walkthrough</div>
         <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
           <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
           <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20">
@@ -118,7 +118,7 @@ function UpdateWalkPage({ userState }) {
             <button className="m-2 p-2 w-1/2 text-white border rounded bg-green-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Update</button>
           </form>
         </div>
-      </>
+      </div>
     );
   }
 }
