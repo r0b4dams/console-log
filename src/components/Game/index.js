@@ -56,7 +56,7 @@ export default function Game({ game }) {
   } else {
     return (
       <div className="p-2 flex space-x-4 bg-red-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
-        No Results found!
+        Invalid Query!
       </div>
     )
   }

@@ -7,9 +7,6 @@ const KEY = `key=d96815feeee44966abc8c105508419f4`;
 
 // const URL_PREFIX = "http://localhost:3001"
 const URL_PREFIX = "https://console-log-backend.herokuapp.com"
-
-// const SUFFIX = '&ordering=-metacritic'
-
 const API = {
     search: function(CONFIG, SUFFIX) {
       if (!isNaN(CONFIG) && CONFIG) {

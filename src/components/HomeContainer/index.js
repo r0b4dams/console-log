@@ -68,7 +68,6 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        {/* <div onClick={console.log(this.state.games)}>check games {global.searchable}</div> */}
         <div className="grid grid-flow-col">
           <div className="col">
             <GameGroup games={this.state.games}/>

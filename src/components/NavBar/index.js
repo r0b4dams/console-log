@@ -5,7 +5,9 @@ import SpeechRecognition, {useSpeechRecognition,} from "react-speech-recognition
 export default function NavBar( props ) {
   // user this to store user's voice search
   const [voiceSearchTerm, setVoiceSearchTerm] = useState("");
-  const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
+  
+  // const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
+  const searchPlaceholder = "Find a Game..."
 
   const location = useLocation();
   const history = useHistory();
@@ -46,7 +48,7 @@ export default function NavBar( props ) {
     <div className="pl-52 py-1 pr-52 py-5 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
       <div className="">
         <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
-          <img src="assets/images/Title.png" className="object-contain h-8" alt=""/>
+          <img src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8" alt=""/>
         </Link>
       </div>
 
@@ -58,7 +60,7 @@ export default function NavBar( props ) {
           {/* Button will not render if browser does not support web speech api */}
           {SpeechRecognition.browserSupportsSpeechRecognition() && 
           <button onClick={SpeechRecognition.startListening}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
             </svg>
           </button>}
