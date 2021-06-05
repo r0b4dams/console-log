@@ -1,7 +1,7 @@
 export default function NavItem({ href, isActive, children }) {
 
   const handleClick = (href) => {
-    const startDate ="2021-05-01";
+    const startDate = "2021-05-01";
     const endDate = "2021-06-04"
     switch (href) {
       case "/featured":

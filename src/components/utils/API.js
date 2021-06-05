@@ -8,37 +8,37 @@ const KEY = `key=d96815feeee44966abc8c105508419f4`;
 // const URL_PREFIX = "http://localhost:3001"
 const URL_PREFIX = "https://console-log-backend.herokuapp.com"
 const API = {
-    search: function(CONFIG, SUFFIX) {
-      if (!isNaN(CONFIG) && CONFIG) {
-        //search by game ID
-        // console.log("NUMBER: "+CONFIG)
-        CONFIG=`/${CONFIG}?`;
-        return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
-      } else if (!CONFIG) {
-        //blank
-        // console.log("BLANK")
-        return axios.get(BASEURL + "?" + KEY + SUFFIX);
-      } else if (CONFIG.includes("http")) {
-        //searching NEXT & PREV
-        console.log("Searching: "+CONFIG)
-        return axios.get(CONFIG);
-      } else {
-        //For searchables
-        //api/games?search=${slugifiedTerm}&key=
-        CONFIG.toLowerCase().replace(/\s+/g, '-');
-        CONFIG = `?search=${CONFIG}&`;
-        // console.log("New CONFIG:"+CONFIG)
-        return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
-      } 
+    search: function (CONFIG, SUFFIX) {
+        if (!isNaN(CONFIG) && CONFIG) {
+            //search by game ID
+            // console.log("NUMBER: "+CONFIG)
+            CONFIG = `/${CONFIG}?`;
+            return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
+        } else if (!CONFIG) {
+            //blank
+            // console.log("BLANK")
+            return axios.get(BASEURL + "?" + KEY + SUFFIX);
+        } else if (CONFIG.includes("http")) {
+            //searching NEXT & PREV
+            console.log("Searching: " + CONFIG)
+            return axios.get(CONFIG);
+        } else {
+            //For searchables
+            //api/games?search=${slugifiedTerm}&key=
+            CONFIG.toLowerCase().replace(/\s+/g, '-');
+            CONFIG = `?search=${CONFIG}&`;
+            // console.log("New CONFIG:"+CONFIG)
+            return axios.get(BASEURL + CONFIG + KEY + SUFFIX);
+        }
     },
     // possible implementation for get games associated with user's walkthroughs
-    searchByWalkthrough: function(IDlist, SUFFIX) {
-      let gamelist = [];
-      this.search(IDlist, SUFFIX).then(res=>{
-          gamelist.push(res.data);
-      });
-      console.log(gamelist)
-      return gamelist;
+    searchByWalkthrough: function (IDlist, SUFFIX) {
+        let gamelist = [];
+        this.search(IDlist, SUFFIX).then(res => {
+            gamelist.push(res.data);
+        });
+        console.log(gamelist)
+        return gamelist;
     },
     login: function (userData) {
         return axios.post(`${URL_PREFIX}/auth/login`, userData)
@@ -56,9 +56,9 @@ const API = {
         })
     },
     getAllWalkthroughs: function (token) {
-      return axios.get(`${URL_PREFIX}/api/findall`);
+        return axios.get(`${URL_PREFIX}/api/findall`);
     },
-    
+
     getOneWalkthrough: function (id) {
         return axios.get(`${URL_PREFIX}/api/find/${id}`);
     },

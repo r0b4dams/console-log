@@ -21,17 +21,17 @@ function OneWalk({ userState }) {
 
   // don't break this again!
   useEffect(() => {
-     if (userState.user.id ) {
+    if (userState.user.id) {
       API.getUserFav(userState.user.id).then(res => {
         const favArray = [];
         res.data.favs.forEach(element => {
           favArray.push(element._id)
         });
         setFav(favArray.includes(walkthrough._id))
-        setOwner(walkthrough.user_id===userState.user.id)
+        setOwner(walkthrough.user_id === userState.user.id)
       })
     }
-  }, [ userState.user.id, walkthrough._id, walkthrough.user_id])
+  }, [userState.user.id, walkthrough._id, walkthrough.user_id])
 
   const handleFav = () => {
     if (fav) {
@@ -109,12 +109,12 @@ function OneWalk({ userState }) {
             </div>
           </dl>
         </div>
-        {owner && 
-        <div>
-          <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
-          <ModalConfirmDelete walkthroughID={walkthrough._id} userState={userState}/>
-          {/* <button className="outline-false focus:outline-none p-3 mx-3 rounded bg-gray-200" onClick={() => { handleDelete(walkthrough._id) }}>❌Delete</button> */}
-        </div>
+        {owner &&
+          <div>
+            <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
+            <ModalConfirmDelete walkthroughID={walkthrough._id} userState={userState} />
+            {/* <button className="outline-false focus:outline-none p-3 mx-3 rounded bg-gray-200" onClick={() => { handleDelete(walkthrough._id) }}>❌Delete</button> */}
+          </div>
         }
       </div>
     )
