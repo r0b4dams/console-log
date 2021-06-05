@@ -7,9 +7,6 @@ const KEY = `key=${process.env.REACT_APP_APIKEY}`;
 
 // const URL_PREFIX = "http://localhost:3001"
 const URL_PREFIX = "https://console-log-backend.herokuapp.com"
-
-// const SUFFIX = '&ordering=-metacritic'
-
 const API = {
     search: function(CONFIG, SUFFIX) {
       if (!isNaN(CONFIG) && CONFIG) {

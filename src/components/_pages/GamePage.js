@@ -33,6 +33,7 @@ function GamePage({ match }) {
   plats.map(platform => (
     platforms.push(platform.platform.name)
   ))
+
   return (
     <>
       <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">

@@ -3,22 +3,26 @@ import API from "../utils/API";
 import "./style.css"
 
 function Rating(props) {
-    const {userState, walkthrough} = props
-    const [rating, setRating] = useState(0);
+  const { userState, walkthrough } = props
+  const [rating, setRating] = useState(0);
+  const [aRating, setArating] = useState(0);
 
-    useEffect(() => {
-      if(walkthrough.ratings) {
-        let averageRating = parseInt(walkthrough.ratings.reduce((a, b) => a + b, 0)/walkthrough.ratings.length);
-        averageRating = +averageRating || 0;
-        setRating(averageRating)
-      }
-    },[walkthrough.ratings])
-
-    function handleRating(index) {
-      setRating(index);
-      API.addRating(index, walkthrough._id, userState.token)
+  useEffect(() => {
+    if (walkthrough.ratings) {
+      let averageRating = (walkthrough.ratings.reduce((a, b) => a + b, 0) / walkthrough.ratings.length).toFixed(2);
+      averageRating = +averageRating || "no rating";
+      setArating(averageRating)
+      setRating(averageRating)
     }
-    return (
+  }, [walkthrough.ratings])
+
+  function handleRating(index) {
+    setRating(index);
+    API.addRating(index, walkthrough._id, userState.token)
+  }
+  return (
+    <>
+      <div className="text-white pb-0 mb-0">{aRating}</div>
       <div className="star-rating">
         {[...Array(5)].map((star, index) => {
           index += 1;
@@ -34,8 +38,8 @@ function Rating(props) {
           );
         })}
       </div>
-    );
-  }
-  
-  export default Rating;
-  
+    </>
+  );
+}
+
+export default Rating;

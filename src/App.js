@@ -11,7 +11,7 @@ import Walkthrough from "./components/_pages/OneWalkPage"
 import AddWalkPage from "./components/_pages/WalkPageAdd"
 import UpdateWalkPage from "./components/_pages/WalkPageUpdate"
 import Login from "./components/_pages/Login"
-import SearchPage from "./components/_pages/SearchPage"
+
 export const AppContext = React.createContext();
 
 function App() {
@@ -180,7 +180,6 @@ function App() {
             userState={userState}
           />
         )} />
-        <Route exact path="/Search" component={SearchPage} />
         <Route exact path="/AddWalkthrough/:gameID" render={() => (
           <AddWalkPage
             userState={userState}

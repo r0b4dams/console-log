@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
 import '../assets/OneWalkPage.css';
 import Rating from "../Rating"
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useHistory } from "react-router-dom";
 import moment from 'moment';
+import ModalConfirmDelete from "../ModalConfirmDelete"
 
 function OneWalk({ userState }) {
+  const history = useHistory();
   let match = useRouteMatch("/Walkthrough/:_id");
   const [fav, setFav] = useState(false);
   const [walkthrough, setWalkthrough] = useState({});
+  const [owner, setOwner] = useState(false);
+
   useEffect(() => {
     API.getOneWalkthrough(match.params._id).then(res => {
       setWalkthrough(res.data);
@@ -24,9 +28,10 @@ function OneWalk({ userState }) {
           favArray.push(element._id)
         });
         setFav(favArray.includes(walkthrough._id))
+        setOwner(walkthrough.user_id===userState.user.id)
       })
     }
-  }, [ userState.user.id, walkthrough._id])
+  }, [ userState.user.id, walkthrough._id, walkthrough.user_id])
 
   const handleFav = () => {
     if (fav) {
@@ -36,6 +41,11 @@ function OneWalk({ userState }) {
       setFav(true);
       API.addFavorite(userState.user.id, match.params._id, userState.token);
     }
+  }
+
+  const handleEdit = (id) => {
+    console.log("Edit: " + id);
+    return history.push(`/UpdateWalkthrough/${id}`);
   }
 
   // if(walkthrough) {
@@ -63,18 +73,17 @@ function OneWalk({ userState }) {
   if (walkthrough) {
     return (
       <>
-      {console.log(userState)}
         <div className="relative mx-8">
           <dl className="flex flex-wrap font-medium">
             <div className="absolute top-0 right-0">
               <dt className="sr-only">Link</dt>
-              <dd className="text-md"><a href={walkthrough.link} target="_blank">{walkthrough.link}</a></dd>
+              <dd className="text-md"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
             </div>
           </dl>
         </div>
         {userState.user.name &&
           <div className="min-w-0 relative flex-auto">
-            Rate: <Rating userState={userState} walkthrough={walkthrough} />
+            <Rating userState={userState} walkthrough={walkthrough} />
           </div>
         }
         <article className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mx-8 rounded border-2">
@@ -126,6 +135,13 @@ function OneWalk({ userState }) {
             <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
           </dl>
         </div>
+        {owner && 
+        <div>
+          <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
+          <ModalConfirmDelete walkthroughID={walkthrough._id} userState={userState}/>
+          {/* <button className="outline-false focus:outline-none p-3 mx-3 rounded bg-gray-200" onClick={() => { handleDelete(walkthrough._id) }}>❌Delete</button> */}
+        </div>
+        }
       </>
     )
   } else {

@@ -34,7 +34,7 @@ function AddWalkPage({userState}) {
     console.log(data)
     alert ("Walkthrough Saved!")
     API.createWalkthrough(data, userState.token)
-    return history.push('/Dashboard');
+    return history.push(`/`);
   }
   plats.map(platform => (
     platforms.push(platform.platform.name)
