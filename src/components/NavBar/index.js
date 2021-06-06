@@ -55,7 +55,7 @@ export default function NavBar(props) {
       <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
       {/* <img id="box" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8 gradient-border" alt="" /> */}
       {/* <img id="box" src="./assets/images/console_log_transparent.png" className="object-contain h-14 gradient-border" alt="" /> */}
-      <img id="box" src="./assets/images/console_log.png" className="object-contain h-12 gradient-border" alt="" />
+      <img id="box" src="/assets/images/console_log.png" className="object-contain h-12 gradient-border" alt="" />
       </Link>
 
       {/* start search bar*/}
@@ -74,7 +74,7 @@ export default function NavBar(props) {
             </div>
             <div className="flex-grow">
               <form id="search-form" onSubmit={handleFormSubmit}>
-                <input className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 "
+                <input id="search-input" className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 "
                   defaultValue={voiceSearchTerm}
                   type="text"
                   placeholder={searchPlaceholder}
@@ -95,7 +95,7 @@ export default function NavBar(props) {
       </div>
       {/* end search bar*/}
 
-      {!props.userState.user.name && <div className="sm:pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {!props.userState.user.name && <div className="pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
 
       {props.userState.user.name &&
         <span>
