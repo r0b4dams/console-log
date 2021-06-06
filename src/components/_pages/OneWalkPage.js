@@ -48,6 +48,8 @@ function OneWalk({ userState }) {
 
   const handleEdit = (id) => {
     console.log("Edit: " + id);
+    global.walk = "rated";
+    localStorage.setItem('walk', "rated");
     return history.push(`/UpdateWalkthrough/${id}`);
   }
 
