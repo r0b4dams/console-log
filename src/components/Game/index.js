@@ -15,11 +15,11 @@ export default function Game({ game }) {
           <article className="grid grid-flow-col bg-cover gameCard p-2 flex space-x-4 mb-2 sm:mx-8 rounded hover:bg-gray-300 border-2" style={{
             backgroundImage: `url(${game.background_image})`
           }}>
-            <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1 grid grid-rows-1 grid-flow-col">
+            <div className="relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1 grid grid-rows-1 grid-flow-col">
               <div className="flex w-32 row-span-1 p-2">
                 <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
               </div>
-              <div className="min-w-0 relative flex-auto sm:pr-20 lg:pr-0 xl:pr-20 ">
+              <div className="relative flex-auto">
                 <h2 className="text-lg font-semibold text-black mb-0.5 text-left px-0">
                   {game.name} <span className="text-sm">({game.released})</span>
                 </h2>
