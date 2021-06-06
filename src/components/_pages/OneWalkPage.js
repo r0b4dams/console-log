@@ -16,7 +16,10 @@ function OneWalk({ userState }) {
   useEffect(() => {
     API.getOneWalkthrough(match.params._id).then(res => {
       setWalkthrough(res.data);
-    })
+    }).catch((err) => {
+      console.log(err, "Walkthrough does not exist")
+      return history.push('/');
+    });
   }, [match.params._id])
 
   // don't break this again!
@@ -46,6 +49,15 @@ function OneWalk({ userState }) {
   const handleEdit = (id) => {
     console.log("Edit: " + id);
     return history.push(`/UpdateWalkthrough/${id}`);
+  }
+
+  const handleDelete = () => {
+    setWalkthrough("")
+    API.deleteWalkthrough(walkthrough._id, userState.token)
+    setTimeout(function(){
+      console.log("deleting "+ walkthrough._id)
+    }, 500); 
+    return history.push('/');
   }
 
   if (walkthrough) {
@@ -109,17 +121,18 @@ function OneWalk({ userState }) {
             </div>
           </dl>
         </div>
-        {owner &&
-          <div>
-            <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
-            <ModalConfirmDelete walkthroughID={walkthrough._id} userState={userState} />
-            {/* <button className="outline-false focus:outline-none p-3 mx-3 rounded bg-gray-200" onClick={() => { handleDelete(walkthrough._id) }}>❌Delete</button> */}
-          </div>
+        {owner && 
+        <div>
+          <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
+          <ModalConfirmDelete handleDelete={handleDelete}/>
+        </div>
         }
       </div>
     )
   } else {
-    return;
+    return (
+      <div>Sorry, walkthrough not found!</div>
+    );
   }
 }
 

@@ -9,7 +9,6 @@ export default function Game({ game }) {
     game.platforms.map(platform => (
       platforms.push(platform.platform.name)
     ))
-
     return (
       <>
         <Link to={`/GamePage/${game.id}`} className={location.pathname === "/GamePage" ? "nav-link active" : "nav-link"}>
@@ -25,14 +24,22 @@ export default function Game({ game }) {
                   {game.name} <span className="text-sm">({game.released})</span>
                 </h2>
                 <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+                  {game.playtime > 0 &&
                   <div>
                     <dt className="sr-only">Play Time</dt>
                     <dd> Playtime: {game.playtime}hr</dd>
                   </div>
+                  }                  
+                  {game.genre && 
                   <div>
                     <dt className="sr-only">Genre</dt>
-                    <dd> · {game.genre} </dd>
-                  </div>
+                    <dd> · {game.genres[0].name} </dd>
+                  </div>}
+                  {game.esrb_rating && 
+                  <div>
+                    <dt className="sr-only">Rated</dt>
+                    <dd> · Rated For: {game.esrb_rating.name} </dd>
+                  </div>}
                   <div className="flex-none w-full mt-0.5 font-normal text-left">
                     <dd className="text-black">
                       <div className="justify-start py-2 px-1 rounded-full text-sm mr-2 grid grid-rows-1 grid-flow-col">
@@ -44,7 +51,7 @@ export default function Game({ game }) {
                     <dt className="text-amber-500">
                       <span className="sr-only">Rating</span>
                     </dt>
-                    <dd>{game.metacritic && <span>{game.metacritic}%</span>}</dd>
+                    <dd>{game.metacritic && <span className="rounded-full py-0 px-2 bg-purple-200">metacritic: {game.metacritic}%</span>}</dd>
                   </div>
                 </dl>
               </div>

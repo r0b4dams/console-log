@@ -1,18 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import API from "../utils/API";
+// import { useHistory } from "react-router-dom";
+// import API from "../utils/API";
 
+<<<<<<< HEAD
 export default function Modal({ walkthroughID, userState }) {
   const history = useHistory();
   console.log(walkthroughID);
+=======
+export default function Modal(props) {
+>>>>>>> develop
   const [showModal, setShowModal] = React.useState(false);
-
-  const handleDelete = () => {
-    console.log("Deleted: " + walkthroughID);
-    setShowModal(false)
-    API.deleteWalkthrough(walkthroughID, userState.token)
-    return history.push('/');
-  }
 
   return (
     <>
@@ -43,9 +40,18 @@ export default function Modal({ walkthroughID, userState }) {
                   <button className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={() => setShowModal(false)}>
                     Close
                    </button>
+<<<<<<< HEAD
                   <button className="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={() => handleDelete()}>
                     Delete Walkthrough
                    </button>
+=======
+                  {/* <button className="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={() => props.handleDelete()}> */}
+                  <form id="search-form" onSubmit={props.handleDelete}>
+                    <button className="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
+                      Delete Walkthrough
+                   </button>
+                  </form>
+>>>>>>> develop
                 </div>
               </div>
             </div>

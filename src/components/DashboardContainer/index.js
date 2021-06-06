@@ -12,7 +12,6 @@ function DashboardContainer({ userState }) {
   useEffect(() => {
     if (userState.user.id) {
       API.getUserWalkthrough(userState.user.id).then(res => {
-        // console.log(res.data)
         setWalkthroughState(res.data);
       })
     }
@@ -32,7 +31,7 @@ function DashboardContainer({ userState }) {
 
   return (
     <div className="mx-48">
-      <Dashboard />
+      <Dashboard userState={userState}/>
 
       <div className="grid grid-cols-2 w-full">
         <div className="content-left mx-8 space-x-8 w-11/12 p-2 bg-gray-200 bg-opacity-75 rounded border-2">
