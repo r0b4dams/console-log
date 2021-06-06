@@ -24,10 +24,12 @@ export default function Game({ game }) {
                   {game.name} <span className="text-sm">({game.released})</span>
                 </h2>
                 <dl className="flex flex-wrap text-sm font-medium whitespace-pre">
+                  {game.playtime > 0 &&
                   <div>
                     <dt className="sr-only">Play Time</dt>
                     <dd> Playtime: {game.playtime}hr</dd>
                   </div>
+                  }                  
                   {game.genre && 
                   <div>
                     <dt className="sr-only">Genre</dt>
