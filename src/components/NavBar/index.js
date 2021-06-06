@@ -45,7 +45,7 @@ export default function NavBar(props) {
   }
 
   return (
-    <div className="pl-52 py-1 pr-52 py-5 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
+    <div className="pl-4 sm:pl-52 py-1 pr-4 sm:pr-52 py-5 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
       <div className="">
         <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
           <img src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8" alt="" />
@@ -87,7 +87,7 @@ export default function NavBar(props) {
       </div>
       {/* end search bar*/}
 
-      {!props.userState.user.name && <div className="pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {!props.userState.user.name && <div className="sm:pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
 
       {props.userState.user.name &&
         <span>

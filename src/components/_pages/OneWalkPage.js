@@ -105,7 +105,7 @@ function OneWalk({ userState }) {
             <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
             <div className="absolute bottom-0 right-0">
               <dt className="sr-only">Link</dt>
-              <dd className="text-md"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
+              <dd className="text-md bg-white inline-block p-1 px-2 rounded-full"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
             </div>
           </dl>
         </div>

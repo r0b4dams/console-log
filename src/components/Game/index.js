@@ -13,7 +13,7 @@ export default function Game({ game }) {
     return (
       <>
         <Link to={`/GamePage/${game.id}`} className={location.pathname === "/GamePage" ? "nav-link active" : "nav-link"}>
-          <article className="grid grid-flow-col bg-cover gameCard p-2 flex space-x-4 mb-2 mx-8 rounded hover:bg-gray-300 border-2" style={{
+          <article className="grid grid-flow-col bg-cover gameCard p-2 flex space-x-4 mb-2 sm:mx-8 rounded hover:bg-gray-300 border-2" style={{
             backgroundImage: `url(${game.background_image})`
           }}>
             <div className="min-w-0 relative flex-auto bg-gray-200 bg-opacity-80 rounded px-1 grid grid-rows-1 grid-flow-col">
