@@ -1,16 +1,34 @@
-# Console Log - The gamer's repo of great walkthroughs
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-------------
-## Description:
-Using React and Tailwind CSS we created a page that allows a user to store, create, and search for walkthroughs of over 500,000 games.  We use RAWG Video Games Database API to get necessary information.
+[![MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-Table of Contents
+# Console Log
+
+## Description
+
+A hub for players to store walkthroughs for their favorite video games!
+
+Create a user profile to start and start saving text or links to your favorite walkthroughs.
+
+View, rate, and favorite walkthroughs posted by other users!
+
+Search for games using voice commands!
+
+## Table of Contents
 
 - [Installation](##🛠️Installation)
 - [Usage](##📐Usage)
 - [License](##📋License)
 - [Contributing](##📝Contributing)
 - [Tests](##✔️Tests)
+
+## Usage
+
+Click the image below to check out the deployed application!
+
+[![link to app](./public/assets/images/webapp-screenshot.jpg)](https://ras-console-log.herokuapp.com/)
+
+## Questions
+
+Questions? Contact one of us via the links below!
 
 
 ------------
@@ -27,9 +45,7 @@ Will need to update their .env with a valid RAWG key
 
 ------------
 ## 📋License
-Please click on the following link to view a summary of this license:
-
-[ [MIT] ](https://opensource.org/licenses/MIT)
+This project is covered under the [MIT](https://opensource.org/licenses/MIT) license.
 
 ------------
 ## 📝Contributing
@@ -46,3 +62,6 @@ Please click on the following link to view a summary of this license:
 To test the program, please run the following:
 
 n/a
+
+    
+
