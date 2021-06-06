@@ -4,7 +4,7 @@ import GameList from '../GameList'
 import Game from '../Game'
 
 export default function GameGroup({ games }) {
-    return (
+  return (
     <div>
       <Nav>
         <NavItem href="/featured" isActive>Featured</NavItem>

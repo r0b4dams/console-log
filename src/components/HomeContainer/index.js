@@ -30,48 +30,48 @@ class HomeContainer extends Component {
 
   reloadGames(query, filter) {
     API.search(query, filter)
-    .then((res) => {
-      if(res.data.results.length) { 
-        this.setState({
-          games: res.data.results,
-          gamesFilter: res.data.results,
-          next: res.data.next,
-          prev: res.data.previous
-        });  
-      } else {
-        const tempGame = []
-        tempGame.push(res.data.results)
-        this.setState({
-          games: tempGame,
-        });   
-      }
-    })
-    .catch((err) => {
-      global.searchable="";
-      localStorage.setItem('searchable', "");
-      console.log(err, "not found, defaulting")
-    });
+      .then((res) => {
+        if (res.data.results.length) {
+          this.setState({
+            games: res.data.results,
+            gamesFilter: res.data.results,
+            next: res.data.next,
+            prev: res.data.previous
+          });
+        } else {
+          const tempGame = []
+          tempGame.push(res.data.results)
+          this.setState({
+            games: tempGame,
+          });
+        }
+      })
+      .catch((err) => {
+        global.searchable = "";
+        localStorage.setItem('searchable', "");
+        console.log(err, "not found, defaulting")
+      });
   }
 
   handlePrevSubmit = (event) => {
-    global.searchable=this.state.prev;
+    global.searchable = this.state.prev;
     localStorage.setItem('searchable', this.state.prev);
     this.reloadGames(global.searchable, global.filter)
   }
 
   handleNextSubmit = (event) => {
-    global.searchable=this.state.next;
+    global.searchable = this.state.next;
     localStorage.setItem('searchable', this.state.next);
     this.reloadGames(global.searchable, global.filter)
   }
-  
+
   render() {
     return (
       <div>
         <div className="grid grid-flow-col">
           <div className="col">
-            <GameGroup games={this.state.games}/>
-            {this.state.games && <NextButton 
+            <GameGroup games={this.state.games} />
+            {this.state.games && <NextButton
               handleNextSubmit={this.handleNextSubmit}
               handlePrevSubmit={this.handlePrevSubmit}
               next={this.state.next}
@@ -79,7 +79,7 @@ class HomeContainer extends Component {
             />}
           </div>
           <div className="col">
-            <WalkGroup walkthroughs={this.state.walkthroughs}/>
+            <WalkGroup walkthroughs={this.state.walkthroughs} />
           </div>
         </div>
       </div>
