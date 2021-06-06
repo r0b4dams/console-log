@@ -7,8 +7,8 @@ export default function NavBar(props) {
   // user this to store user's voice search
   const [voiceSearchTerm, setVoiceSearchTerm] = useState("");
 
-  // const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
-  const searchPlaceholder = "Find a Game..."
+  const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
+  // let searchPlaceholder = "Find a Game..."
 
   const location = useLocation();
   const history = useHistory();
@@ -41,20 +41,27 @@ export default function NavBar(props) {
   // callback function that populates form input with user's voice search
   // then submits form (as if it were typed and submit button clicked)
   const voiceSearch = (searchTerm) => {
-    setVoiceSearchTerm(searchTerm);                         // update form value
+    setSearchPlaceholder(`say "Search for"`)
+    setVoiceSearchTerm(searchTerm);                       // update form value
     document.getElementById("search-form").requestSubmit()  // submit form
   }
 
+  const manualSearch = () => {
+    document.getElementById("search-form").requestSubmit()
+  }
+
   return (
-    <div className="pl-52 py-1 pr-52 py-5 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
+    <div className="pl-52 py-1 pr-52 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
       <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
-        <img id="box" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8 gradient-border" alt="" />
+      {/* <img id="box" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8 gradient-border" alt="" /> */}
+      {/* <img id="box" src="./assets/images/console_log_transparent.png" className="object-contain h-14 gradient-border" alt="" /> */}
+      <img id="box" src="./assets/images/console_log.png" className="object-contain h-12 gradient-border" alt="" />
       </Link>
 
       {/* start search bar*/}
       <div className="text-right">
         <div className="grid grid grid-rows-1 grid-flow-col">
-          <span className="flex items-center pl-0">
+          <span className="flex items-center pl-0 pt-2">
             <div className="flex-none pt-1">
               {/* Click here to start speech-to-text */}
               {/* Button will not render if browser does not support web speech api */}
@@ -76,7 +83,7 @@ export default function NavBar(props) {
               </form>
             </div>
             <div className="flex-none">
-              <button type="submit" className="p-1 focus:outline-none focus:shadow-outline">
+              <button onClick={manualSearch} className="p-1 focus:outline-none focus:shadow-outline">
                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6">
                   <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
