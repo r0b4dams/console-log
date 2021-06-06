@@ -13,7 +13,7 @@ export default function NavItem({ href, isActive, children }) {
         localStorage.setItem('filter', "&ordering=-metacritic");
         break;
       case "/recent":
-        global.filter = "?dates=2021-05-01,2021-06-04";
+        global.filter = `&dates=${startDate},${endDate}`;
         localStorage.setItem('filter', `&dates=${startDate},${endDate}`);
         break;
       case "/rated":

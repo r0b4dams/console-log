@@ -3,7 +3,6 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
 import '../assets/WalkPageAdd.css';
-
 function AddWalkPage({ userState }) {
   console.log(userState)
   const history = useHistory();
@@ -19,7 +18,6 @@ function AddWalkPage({ userState }) {
         setPlats(res.data.platforms);
       })
   }, [gameID])
-
   const handleAddSubmit = (event) => {
     let data =
     {
@@ -79,9 +77,7 @@ function AddWalkPage({ userState }) {
             Walkthrough by {userState.user.name}
           </h1>
         </div>
-
         <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})` }}>
-
           <form onSubmit={handleAddSubmit} className="w-full">
             <input
               name="WalkthroughTitle"
@@ -121,7 +117,19 @@ function AddWalkPage({ userState }) {
       </div>
     )
   }
-
 }
-
 export default AddWalkPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
