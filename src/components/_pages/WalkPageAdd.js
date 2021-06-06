@@ -3,7 +3,6 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import Consoles from "../Consoles"
 import API from "../utils/API";
 import '../assets/WalkPageAdd.css';
-
 function AddWalkPage({ userState }) {
   console.log(userState)
   const history = useHistory();
@@ -19,7 +18,6 @@ function AddWalkPage({ userState }) {
         setPlats(res.data.platforms);
       })
   }, [gameID])
-
   const handleAddSubmit = (event) => {
     let data =
     {
@@ -79,38 +77,37 @@ function AddWalkPage({ userState }) {
             Walkthrough by {userState.user.name}
           </h1>
         </div>
-
         <div className="artOp bg-cover p-1 flex space-x-4 rounded-lg content-center m-8" style={{ backgroundImage: `url(${game.background_image_additional})` }}>
-
-      <form onSubmit={handleAddSubmit} className="w-full">
-        <input 
-          name="WalkthroughTitle"
-          type="text"
-          className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
-          placeholder="Walkthrough Title"
-          maxLength={40}
-          required
-        />
-        <textarea
-          name="WalkthroughContent"
-          type="textbox"
-          className="appearance-none overflow-y-auto h-52 w-full rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90"
-          placeholder="Walkthrough Content"
-          required
-          >
-        </textarea>
-        <input 
-          name="WalkthroughLink"
-          type="text"
-          className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90" 
-          // value = "walkthrough.name"
-          placeholder="Link (optional)"
-        />
-          <button type="submit" className="m-2 p-2 w-1/2 text-white border rounded bg-blue-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Submit</button>
-      </form>
-    </div>
-    </>
-  )} else {
+          <form onSubmit={handleAddSubmit} className="w-full">
+            <input
+              name="WalkthroughTitle"
+              type="text"
+              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90"
+              // value = "walkthrough.name"
+              placeholder="Walkthrough Title"
+              required
+            />
+            <textarea
+              name="WalkthroughContent"
+              type="textbox"
+              className="appearance-none overflow-y-auto h-52 w-full rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90"
+              placeholder="Walkthrough Content"
+              required
+            >
+            </textarea>
+            <input
+              name="WalkthroughLink"
+              type="text"
+              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm opacity-90"
+              // value = "walkthrough.name"
+              placeholder="Link (optional)"
+            />
+            <button type="submit" className="m-2 p-2 w-1/2 text-white border rounded bg-blue-500 bg-opacity-75 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">Submit</button>
+          </form>
+        </div>
+      </div>
+    )
+  } else {
     return (
       <div>
         Sorry, you must log in or sign up first.
@@ -120,7 +117,19 @@ function AddWalkPage({ userState }) {
       </div>
     )
   }
-
 }
-
 export default AddWalkPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
