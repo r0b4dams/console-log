@@ -88,7 +88,7 @@ export default function NavBar(props) {
       </div>
       {/* end search bar*/}
 
-      {!props.userState.user.name && <div className="pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {!props.userState.user.name && <div className="sm:pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
 
       {props.userState.user.name &&
         <span>
