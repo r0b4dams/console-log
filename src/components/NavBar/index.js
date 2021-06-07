@@ -10,7 +10,7 @@ export default function NavBar(props) {
   const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
   // let searchPlaceholder = "Find a Game..."
 
-  const location = useLocation();
+    const location = useLocation();
   const history = useHistory();
 
   const handleFormSubmit = (event) => {
@@ -41,7 +41,7 @@ export default function NavBar(props) {
   // callback function that populates form input with user's voice search
   // then submits form (as if it were typed and submit button clicked)
   const voiceSearch = (searchTerm) => {
-    setSearchPlaceholder(`say "Search for"`)
+
     setVoiceSearchTerm(searchTerm);                       // update form value
     document.getElementById("search-form").requestSubmit()  // submit form
   }
