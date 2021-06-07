@@ -112,7 +112,7 @@ function AddWalkPage({ userState }) {
       <div>
         Sorry, you must log in or sign up first.
         <Link to={`/Login`} className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>
-          <button>[ Return Home ]</button>
+          <button>[ Login ]</button>
         </Link>
       </div>
     )
