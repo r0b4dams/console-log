@@ -1,0 +1,9 @@
+#metacritic {
+    display: block;
+}
+
+@media screen and (max-width: 648px) {
+    #metacritic {
+        display: none;
+    }
+}

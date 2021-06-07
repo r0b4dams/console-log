@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import GameGroup from "../GameGroup"
-import WalkGroup from "../WalkGroup"
-import NextButton from "../NextButton"
+import GameGroup from "../GameGroup";
+import WalkGroup from "../WalkGroup";
+import NextButton from "../NextButton";
+import "./style.css";
 
 class HomeContainer extends Component {
 
@@ -70,6 +71,7 @@ class HomeContainer extends Component {
       <div>
         <div className="grid grid-flow-col">
           <div className="col">
+            <h1 id="heading" className="">Games</h1>
             <GameGroup games={this.state.games} />
             {this.state.games && <NextButton
               handleNextSubmit={this.handleNextSubmit}

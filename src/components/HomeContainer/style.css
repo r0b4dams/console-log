@@ -1,0 +1,9 @@
+#heading {
+    display: none;
+}
+
+@media screen and (max-width: 648px) {
+    #heading {
+        display: block;
+    }
+}
