@@ -3,11 +3,11 @@ export default function Consoles({ platforms }) {
     <>
       {platforms.map(plat => (
         <span key={plat}>
-          {plat === "PC" && <span className="space-x-0"><img className="consoleIcon rounded bg-black" src="/assets/images/PC.jpg" alt="PC" /></span>}
+          {plat === "PC" && <span className="space-x-0"><img className="consoleIcon rounded bg-black" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/PC.JPG" alt="PC" /></span>}
           {plat === "Linux" && <span className="space-x-1"><img className="consoleIcon rounded bg-black" src="/assets/images/linux.png" alt="linux" /></span>}
           {plat === "macOS" && <span className="space-x-1"><img className="consoleIcon" src="/assets/images/macOS.png" alt="macOS" /></span>}
-          {plat === "Android" && <span className="space-x-1"><img className="consoleIcon rounded" src="/assets/images/android.jpg" alt="android" /></span>}
-          {plat === "iOS" && <span className="space-x-1"><img className="consoleIcon rounded" src="/assets/images/ios.jpg" alt="ios" /></span>}
+          {plat === "Android" && <span className="space-x-1"><img className="consoleIcon rounded" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/android.JPG" alt="android" /></span>}
+          {plat === "iOS" && <span className="space-x-1"><img className="consoleIcon rounded" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/ios.JPG" alt="ios" /></span>}
           {plat === "Nintendo Switch" && <span className="space-x-1"><img className="consoleIcon" src="/assets/images/nintendo%20Switch.png" alt="nSwitch" /></span>}
           {plat === "Nintendo 64" && <span className="space-x-1"><img className="consoleIcon" src="/assets/images/nintendo N64.png" alt="n64" /></span>}
           {plat === "Xbox Series S/X" && <span className="space-x-1"><img className="consoleIcon rounded bg-black" src="/assets/images/xboxSX.JPG" alt="xBoxS/X" /></span>}
