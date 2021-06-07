@@ -116,7 +116,7 @@ function OneWalk({ userState }) {
         <div className="relative mx-8 my-2 pb-7 sm:pb-0">
           <dl className="flex flex-wrap font-medium">
             <dt className="sr-only">Date</dt>
-            <dd className="text-md pl-12">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
+            <dd className="text-md pl-12 sm:pl-0">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
             <div className="absolute bottom-0 right-1 sm:right-0">
               <dt className="sr-only">Link</dt>
               <dd className="text-xs sm:text-md bg-white inline-block p-1 px-2 rounded-full"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
