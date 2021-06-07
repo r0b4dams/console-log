@@ -29,15 +29,15 @@ function DashboardContainer({ userState }) {
   }, [userState.user.id])
 
   return (
-    <div className="mx-48">
+    <div className="sm:mx-48">
       <Dashboard userState={userState}/>
 
       <div className="grid grid-cols-2 w-full">
-        <div className="content-left mx-8 w-11/12 p-2 bg-gray-200 bg-opacity-75 rounded border-2">
+        <div className="content-left mx-3 sm:mx-8 w-11/12 p-2 bg-gray-200 bg-opacity-75 rounded border-2">
           <h1 className="text-lg mb-2">Your Favorites:</h1>
           {favList && favList.map((walkthrough) => (
             <span className="grid grid-cols-5 gap-0 " key={walkthrough._id}>
-              <div className="col-span-5"><Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState} /></div>
+              <div className="col-span-5 overflow-hidden"><Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState} /></div>
             </span>
           ))}
         </div>
@@ -45,7 +45,7 @@ function DashboardContainer({ userState }) {
           <div className="text-lg mb-2"><h1>Your Walkthroughs:</h1></div>
           {walkthroughState && walkthroughState.map((walkthrough) => (
             <span className="grid grid-cols-5 gap-0 " key={walkthrough._id}>
-              <div className="col-span-5"><Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState} /></div>
+              <div className="col-span-5 overflow-hidden"><Walk key={walkthrough._id} walkthrough={walkthrough} userState={userState} /></div>
             </span>
           ))}
         </div>

@@ -56,15 +56,15 @@ function OneWalk({ userState }) {
   const handleDelete = () => {
     setWalkthrough("")
     API.deleteWalkthrough(walkthrough._id, userState.token)
-    setTimeout(function(){
-      console.log("deleting "+ walkthrough._id)
-    }, 500); 
+    setTimeout(function () {
+      console.log("deleting " + walkthrough._id)
+    }, 500);
     return history.push('/');
   }
 
   if (walkthrough) {
     return (
-      <div className="mx-48">
+      <div className="sm:mx-48">
         {userState.user.name &&
           <div className="min-w-0 relative flex-auto">
             <Rating userState={userState} walkthrough={walkthrough} />
@@ -113,21 +113,21 @@ function OneWalk({ userState }) {
           </div>
         </div>
 
-        <div className="relative mx-8 my-2">
+        <div className="relative mx-8 my-2 pb-7 sm:pb-0">
           <dl className="flex flex-wrap font-medium">
             <dt className="sr-only">Date</dt>
-            <dd className="text-md">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
-            <div className="absolute bottom-0 right-0">
+            <dd className="text-md pl-12">Last Updated: {moment(`${walkthrough.updated}`).format("MM/DD/YYYY")}</dd>
+            <div className="absolute bottom-0 right-1 sm:right-0">
               <dt className="sr-only">Link</dt>
-              <dd className="text-md bg-white inline-block p-1 px-2 rounded-full"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
+              <dd className="text-xs sm:text-md bg-white inline-block p-1 px-2 rounded-full"><a href={walkthrough.link} target="_blank" rel="noreferrer">{walkthrough.link}</a></dd>
             </div>
           </dl>
         </div>
-        {owner && 
-        <div>
-          <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
-          <ModalConfirmDelete handleDelete={handleDelete}/>
-        </div>
+        {owner &&
+          <div>
+            <button className="bg-green-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={() => { handleEdit(walkthrough._id) }}>📝Edit</button>
+            <ModalConfirmDelete handleDelete={handleDelete} />
+          </div>
         }
       </div>
     )

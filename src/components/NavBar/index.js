@@ -55,7 +55,7 @@ export default function NavBar(props) {
       <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
       {/* <img id="box" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8 gradient-border" alt="" /> */}
       {/* <img id="box" src="./assets/images/console_log_transparent.png" className="object-contain h-14 gradient-border" alt="" /> */}
-      <img id="box" src="/assets/images/console_log.png" className="object-contain h-8 sm:h-12 gradient-border" alt="" />
+      <img id="box" src="/assets/images/console_log.png" className="object-contain h-12 gradient-border" alt="" />
       </Link>
 
       {/* start search bar*/}
@@ -99,7 +99,7 @@ export default function NavBar(props) {
 
       {props.userState.user.name &&
         <span>
-          <div className="p-2 text-right">
+          <div className="p-2 sm:text-right">
             <Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>
             <a href="/" className="p-2 text-right" onClick={props.handleLogout}>Logout</a>
           </div>

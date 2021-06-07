@@ -69,9 +69,10 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        <div className="grid grid-flow-col">
+        <div className="grid sm:grid-flow-col">
           <div className="col">
-            <h1 id="heading" className="">Games</h1>
+            <h1 id="heading" className="text-4xl">Games</h1>
+            <h2 id="heading" className="my-4 bg-white inline-block p-2 rounded-full"><a href="#headingWalk">Go straight to Walkthroughs</a></h2>
             <GameGroup games={this.state.games} />
             {this.state.games && <NextButton
               handleNextSubmit={this.handleNextSubmit}
@@ -80,7 +81,9 @@ class HomeContainer extends Component {
               prev={this.state.prev}
             />}
           </div>
-          <div className="col">
+          <div className="sm:col">
+          <h1 id="headingWalk" className="text-4xl">Walkthroughs</h1>
+          <h2 id="headingWalk" className="my-4 bg-white inline-block p-2 rounded-full"><a href="#heading">Go back up to Games</a></h2>
             <WalkGroup walkthroughs={this.state.walkthroughs} />
           </div>
         </div>
