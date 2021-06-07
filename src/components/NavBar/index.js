@@ -95,10 +95,10 @@ export default function NavBar(props) {
       </div>
       {/* end search bar*/}
 
-      {!props.userState.user.name && <div className="sm:pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {!props.userState.user.name && <div className="sm:pl-52 py-2 self-center"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
 
       {props.userState.user.name &&
-        <span>
+        <span className="self-center">
           <div className="p-2 sm:text-right">
             <Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>
             <a href="/" className="p-2 text-right" onClick={props.handleLogout}>Logout</a>

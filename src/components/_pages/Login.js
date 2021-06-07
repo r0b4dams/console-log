@@ -5,9 +5,9 @@ import '../assets/Login.css';
 export default function Login(props) {
   return (
     <>
-      <div className="bg-login bg-cover bg-no-repeat fixed inset-x-0 overflow-y-auto h-screen sm:h-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div className="bg-login bg-cover bg-no-repeat fixed inset-x-0 overflow-y-auto h-screen" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-        <div className="inline-block align-bottom bg-gray-300 bg-opacity-75 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full mt-28">
+        <div className="inline-block align-bottom bg-gray-300 bg-opacity-75 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full mt-28 sm:mt-0">
           <div className="bg-primary flex items-center justify-center text-white">Login</div>
           {!props.user.name ? (<>
             <form onSubmit={props.handleLoginFormSubmit}>
