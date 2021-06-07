@@ -33,3 +33,13 @@ a:hover {
 .gameCard:hover {
     border: 2px solid #7e57c1;
 }
+
+#rating {
+    display: block;
+}
+
+@media screen and (max-width: 648px) {
+    #rating {
+        display: none;
+    }
+}
