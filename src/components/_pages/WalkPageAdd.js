@@ -39,7 +39,7 @@ function AddWalkPage({ userState }) {
   ))
   if (userState.token) {
     return (
-      <div className="mx-48">
+      <div className="sm:mx-48">
         <div className="bg-blue-600 text-4xl p-2 mx-8">Add Walkthough</div>
         <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
           <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
@@ -63,7 +63,7 @@ function AddWalkPage({ userState }) {
                   </div>
                 </dd>
               </div>
-              <div className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
+              <div id="rating" className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
                 <dt className="text-amber-500">
                   <span className="sr-only">Rating</span>
                 </dt>

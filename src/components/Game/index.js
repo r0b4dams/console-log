@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import Consoles from "../Consoles"
+import Consoles from "../Consoles";
+import "./style.css";
 
 export default function Game({ game }) {
   const location = useLocation();
@@ -47,7 +48,7 @@ export default function Game({ game }) {
                       </div>
                     </dd>
                   </div>
-                  <div className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
+                  <div id="metacritic" className="absolute top-0 right-0 rounded-full bg-amber-50 text-amber-900 px-2 py-0.5 sm:flex xl:flex items-center space-x-1">
                     <dt className="text-amber-500">
                       <span className="sr-only">Rating</span>
                     </dt>

@@ -1,0 +1,9 @@
+#headingWalk, #heading {
+    display: none;
+}
+
+@media screen and (max-width: 648px) {
+    #headingWalk, #heading {
+        display: block;
+    }
+}

@@ -48,7 +48,7 @@ function UpdateWalkPage({ userState }) {
   }
   if (platforms && game) {
     return (
-      <div className="mx-48">
+      <div className="sm:mx-48">
         <div className="bg-green-600 text-4xl p-2 mx-8">Update Walkthrough</div>
         <div className="p-2 flex space-x-4 bg-gray-200 bg-opacity-75 mb-2 mx-8 rounded border-2">
           <img src={game.background_image} alt="" className="flex-none w-18 h-18 rounded-lg object-cover" width="100" height="100" />
