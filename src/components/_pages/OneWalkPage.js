@@ -20,7 +20,7 @@ function OneWalk({ userState }) {
       console.log(err, "Walkthrough does not exist")
       return history.push('/');
     });
-  }, [match.params._id])
+  }, [match.params._id], history)
 
   // don't break this again!
   useEffect(() => {

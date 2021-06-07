@@ -7,8 +7,8 @@ export default function NavBar(props) {
   // user this to store user's voice search
   const [voiceSearchTerm, setVoiceSearchTerm] = useState("");
 
-  const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
-  // let searchPlaceholder = "Find a Game..."
+  // const [searchPlaceholder, setSearchPlaceholder] = useState("Find a Game...");
+  let searchPlaceholder = "Find a Game..."
 
     const location = useLocation();
   const history = useHistory();
