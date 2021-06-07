@@ -1,9 +1,10 @@
 const axios = require("axios")
 const BASEURL = 'https://api.rawg.io/api/games';
 
-// const KEY = `key=${process.env.REACT_APP_APIKEY}`;
-const KEY = `key=d96815feeee44966abc8c105508419f4`;
+const envKey = process.env.API_KEY;
 
+// const KEY = `key=${process.env.REACT_APP_APIKEY}`;
+const KEY = `key=${envKey}`;
 
 // const URL_PREFIX = "http://localhost:3001"
 const URL_PREFIX = "https://console-log-backend.herokuapp.com"
