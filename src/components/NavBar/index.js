@@ -51,7 +51,7 @@ export default function NavBar(props) {
   }
 
   return (
-    <div className="pl-52 py-1 pr-52 mb-0 Barset align-middle grid grid-cols-3 grid-rows-1 grid-flow-col">
+    <div className="sm:pl-52 py-1 sm:pr-52 mb-0 Barset align-middle grid sm:grid-cols-3 grid-rows-3 sm:grid-rows-1 grid-flow-col">
       <Link to="/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>
       {/* <img id="box" src="https://raw.githubusercontent.com/comatosino/console-log-frontend/develop/public/assets/images/Title.png" className="object-contain h-8 gradient-border" alt="" /> */}
       {/* <img id="box" src="./assets/images/console_log_transparent.png" className="object-contain h-14 gradient-border" alt="" /> */}
@@ -74,7 +74,7 @@ export default function NavBar(props) {
             </div>
             <div className="flex-grow">
               <form id="search-form" onSubmit={handleFormSubmit}>
-                <input id="search-input" className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2 "
+                <input id="search-input" className="w-full focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-1 pl-2"
                   defaultValue={voiceSearchTerm}
                   type="text"
                   placeholder={searchPlaceholder}
@@ -95,11 +95,11 @@ export default function NavBar(props) {
       </div>
       {/* end search bar*/}
 
-      {!props.userState.user.name && <div className="pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
+      {!props.userState.user.name && <div className="sm:pl-52 py-2"><Link to="/Login" className={location.pathname === "/Login" ? "nav-link active" : "nav-link"}>LOG IN</Link></div>}
 
       {props.userState.user.name &&
         <span>
-          <div className="p-2 text-right">
+          <div className="p-2 sm:text-right">
             <Link to="/Dashboard" className={location.pathname === "/Dashboard" ? "nav-link active" : "nav-link"}>Dashboard</Link>
             <a href="/" className="p-2 text-right" onClick={props.handleLogout}>Logout</a>
           </div>
