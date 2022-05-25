@@ -6,7 +6,7 @@
 
 A hub for players to store walkthroughs for their favorite video games!
 
-Create a user profile to start and start saving text or links to your favorite walkthroughs.
+Create a user profile and start saving text or links to your favorite walkthroughs.
 
 View, rate, and favorite walkthroughs posted by other users!
 
