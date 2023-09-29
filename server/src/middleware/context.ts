@@ -4,6 +4,5 @@ import type { ExpressContextFunctionArgument } from '@apollo/server/dist/esm/exp
 type AppContextFn = ContextFunction<[ExpressContextFunctionArgument], BaseContext>;
 
 export const context: AppContextFn = async ({ req }) => {
-  console.log(req.headers.authorization);
   return req;
 };
