@@ -3,13 +3,14 @@
 
 
 type Mutation {
-  create: User
-  delete: User
-  update: User
+  createUser(data: createUserInput): User
+  deleteUser: String
+  updateUser(data: updateUserInput): User
 }
 
 type Query {
-  me: User
+  getAllUsers: [User]
+  getOneUser: User
 }
 
 type User {
@@ -17,4 +18,15 @@ type User {
   email: String!
   id: ID!
   username: String!
+}
+
+input createUserInput {
+  email: String!
+  username: String!
+}
+
+input updateUserInput {
+  avatar: String
+  email: String
+  username: String
 }
