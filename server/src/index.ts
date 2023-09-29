@@ -8,6 +8,7 @@ import { CONFIG } from './config';
 import { schema } from './schema';
 import { context } from './middleware/context';
 import type { AppContext } from './@types/common';
+import { DatabaseService } from './services/DatabaseService';
 
 (async function main() {
   const app = express();
@@ -23,6 +24,8 @@ import type { AppContext } from './@types/common';
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use('/graphql', expressMiddleware(apolloServer, { context }));
+
+  await DatabaseService.connect();
 
   httpServer.listen({ port: CONFIG.PORT }, () => {
     console.log(`Server listening at http://localhost:${CONFIG.PORT}`);
