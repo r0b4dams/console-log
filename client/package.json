@@ -1,7 +1,8 @@
 {
   "name": "console-log-client",
-  "private": true,
-  "version": "0.0.0",
+  "author": "Robert Adams <adamsiii.robert@gmail.com>",
+  "repository": "git@github.com:r0b4dams/console-log.git",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,8 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.4",
+    "graphql": "^16.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
