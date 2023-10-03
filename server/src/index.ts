@@ -7,8 +7,8 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import { CONFIG } from './config';
 import { schema } from './schema';
 import { context } from './middleware/context';
-import type { AppContext } from './@types/common';
 import { DatabaseService } from './services/DatabaseService';
+import type { AppContext } from './@types/common';
 
 (async function main() {
   const app = express();
