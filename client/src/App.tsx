@@ -23,6 +23,19 @@ const apolloClient = new ApolloClient({
 export default function App() {
   return (
     <ApolloProvider client={apolloClient}>
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <a>Home</a>
+            </li>
+            <li>
+              <a>Dashboard</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
       <h1>Vite + React</h1>
       <div className='card'>
         <p>
