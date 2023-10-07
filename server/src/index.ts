@@ -19,13 +19,12 @@ import type { AppContext } from './@types/common';
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
+  await DatabaseService.connect();
   await apolloServer.start();
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use('/graphql', expressMiddleware(apolloServer, { context }));
-
-  await DatabaseService.connect();
 
   httpServer.listen({ port: CONFIG.PORT }, () => {
     console.log(`Server listening at http://localhost:${CONFIG.PORT}`);
