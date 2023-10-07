@@ -43,6 +43,7 @@ export interface NexusGenObjects {
     avatar?: string | null; // String
     email: string; // String!
     id: string; // ID!
+    password: string; // String!
     username: string; // String!
   }
 }
@@ -71,6 +72,7 @@ export interface NexusGenFieldTypes {
     avatar: string | null; // String
     email: string; // String!
     id: string; // ID!
+    password: string; // String!
     username: string; // String!
   }
 }
@@ -89,6 +91,7 @@ export interface NexusGenFieldTypeNames {
     avatar: 'String'
     email: 'String'
     id: 'ID'
+    password: 'String'
     username: 'String'
   }
 }

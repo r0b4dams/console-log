@@ -17,6 +17,7 @@ type User {
   avatar: String
   email: String!
   id: ID!
+  password: String!
   username: String!
 }
 
