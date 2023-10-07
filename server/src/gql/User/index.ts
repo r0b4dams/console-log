@@ -1,7 +1,6 @@
 import { objectType } from 'nexus';
 
 export * from './queries';
-export * from './mutations';
 
 export const User = objectType({
   name: 'User',
@@ -9,6 +8,7 @@ export const User = objectType({
     t.nonNull.id('id');
     t.nonNull.string('username');
     t.nonNull.string('email');
+    t.nonNull.string('password');
     t.string('avatar');
   },
 });
