@@ -14,14 +14,14 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  createUserInput: { // input type
-    email: string; // String!
+  loginInput: { // input type
+    password: string; // String!
     username: string; // String!
   }
-  updateUserInput: { // input type
-    avatar?: string | null; // String
-    email?: string | null; // String
-    username?: string | null; // String
+  signupInput: { // input type
+    email: string; // String!
+    password: string; // String!
+    username: string; // String!
   }
 }
 
@@ -37,6 +37,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Auth: { // root type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
   Mutation: {};
   Query: {};
   User: { // root type
@@ -59,14 +63,16 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Auth: { // field return type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
   Mutation: { // field return type
-    createUser: NexusGenRootTypes['User'] | null; // User
-    deleteUser: string | null; // String
-    updateUser: NexusGenRootTypes['User'] | null; // User
+    login: NexusGenRootTypes['Auth'] | null; // Auth
+    signup: NexusGenRootTypes['Auth'] | null; // Auth
   }
   Query: { // field return type
-    getAllUsers: Array<NexusGenRootTypes['User'] | null> | null; // [User]
-    getOneUser: NexusGenRootTypes['User'] | null; // User
+    getUser: NexusGenRootTypes['User'] | null; // User
   }
   User: { // field return type
     avatar: string | null; // String
@@ -78,14 +84,16 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Auth: { // field return type name
+    token: 'String'
+    user: 'User'
+  }
   Mutation: { // field return type name
-    createUser: 'User'
-    deleteUser: 'String'
-    updateUser: 'User'
+    login: 'Auth'
+    signup: 'Auth'
   }
   Query: { // field return type name
-    getAllUsers: 'User'
-    getOneUser: 'User'
+    getUser: 'User'
   }
   User: { // field return type name
     avatar: 'String'
@@ -98,11 +106,11 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createUser: { // args
-      data?: NexusGenInputs['createUserInput'] | null; // createUserInput
+    login: { // args
+      data?: NexusGenInputs['loginInput'] | null; // loginInput
     }
-    updateUser: { // args
-      data?: NexusGenInputs['updateUserInput'] | null; // updateUserInput
+    signup: { // args
+      data?: NexusGenInputs['signupInput'] | null; // signupInput
     }
   }
 }
