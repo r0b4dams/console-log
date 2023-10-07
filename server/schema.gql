@@ -2,15 +2,18 @@
 ### Do not make changes to this file directly
 
 
+type Auth {
+  token: String!
+  user: User!
+}
+
 type Mutation {
-  createUser(data: createUserInput): User
-  deleteUser: String
-  updateUser(data: updateUserInput): User
+  login(data: loginInput): Auth
+  signup(data: signupInput): Auth
 }
 
 type Query {
-  getAllUsers: [User]
-  getOneUser: User
+  getUser: User
 }
 
 type User {
@@ -21,13 +24,13 @@ type User {
   username: String!
 }
 
-input createUserInput {
-  email: String!
+input loginInput {
+  password: String!
   username: String!
 }
 
-input updateUserInput {
-  avatar: String
-  email: String
-  username: String
+input signupInput {
+  email: String!
+  password: String!
+  username: String!
 }
